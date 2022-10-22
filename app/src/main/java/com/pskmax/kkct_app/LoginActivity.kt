@@ -12,6 +12,7 @@ class LoginActivity : AppCompatActivity() {
     var editEmail: EditText? = null
     var editPassword: EditText? = null
     var btnLogin: Button? = null
+    var btnRegister: TextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
