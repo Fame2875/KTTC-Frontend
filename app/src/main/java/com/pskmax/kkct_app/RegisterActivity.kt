@@ -24,7 +24,7 @@ class RegisterActivity : AppCompatActivity() {
         editPassword = findViewById<EditText>(R.id.editPassword)
         editCPassword = findViewById<EditText>(R.id.editCPassword)
         editId = findViewById<EditText>(R.id.editId)
-        btnRegister = findViewById<Button>(R.id.btnRegister)
+        btnRegister = findViewById<Button>(R.id.btnLogin)
         btnToLogin = findViewById<Button>(R.id.btnToLogin)
 
         btnToLogin!!.setOnClickListener{

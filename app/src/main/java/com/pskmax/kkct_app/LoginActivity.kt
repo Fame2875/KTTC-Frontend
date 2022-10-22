@@ -24,6 +24,7 @@ class LoginActivity : AppCompatActivity() {
         editEmail = findViewById<EditText>(R.id.editEmail)
         editPassword = findViewById<EditText>(R.id.editPassword)
         btnToRegister = findViewById<Button>(R.id.btnToRegister)
+        btnLogin = findViewById<Button>(R.id.btnLogin)
 
         /*
         btnLogin!!.setOnClickListener{
