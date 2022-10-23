@@ -56,6 +56,9 @@ class RegisterActivity : AppCompatActivity() {
             else if ((editPassword?.text).toString() != (editCPassword?.text).toString()){
                 println("Your confirm password is not correct")
             }
+            else if (editId?.length()!! < 13){
+                println("Your Citizen ID must have 13 characters")
+            }
             else{
                 val intent = Intent(this@RegisterActivity,HomeActivity::class.java)
                 startActivity(intent)
