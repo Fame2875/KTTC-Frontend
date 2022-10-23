@@ -25,6 +25,12 @@ class RegisterActivity : AppCompatActivity() {
         return  false
     }
 
+    private val EMAIL_REGEX = "^[A-Za-z](.*)([@]{1})(.{1,})(\\.)(.{1,})"
+    private fun isEmailValid(email: String): Boolean {
+        return EMAIL_REGEX.toRegex().matches(email);
+    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
@@ -38,7 +44,10 @@ class RegisterActivity : AppCompatActivity() {
         btnToLogin = findViewById<Button>(R.id.btnToLogin)
 
         btnRegister!!.setOnClickListener{
-            if (editPassword?.length()!! < 8){
+            if (!isEmailValid((editEmail?.text).toString())){
+                println("Your Email is not correct")
+            }
+            else if (editPassword?.length()!! < 8){
                 println("Your pass must be between 8-15 characters")
             }
             else if (!checkPassword((editPassword?.text).toString())){
