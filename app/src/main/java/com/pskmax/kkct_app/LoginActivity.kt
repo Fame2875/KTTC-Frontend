@@ -24,13 +24,14 @@ class LoginActivity : AppCompatActivity() {
         editEmail = findViewById<EditText>(R.id.editEmail)
         editPassword = findViewById<EditText>(R.id.editPassword)
         btnToRegister = findViewById<Button>(R.id.btnToRegister)
-        btnLogin = findViewById<Button>(R.id.btnLogin)
+        btnLogin = findViewById<Button>(R.id.btnRegister)
 
-        /*
         btnLogin!!.setOnClickListener{
-            //action after click login button
+            // action after click login button
+            // check email and password
+            val intent = Intent(this@LoginActivity,HomeActivity::class.java)
+            startActivity(intent)
         }
-        */
 
         btnToRegister!!.setOnClickListener{
             val intent = Intent(this@LoginActivity, RegisterActivity::class.java)

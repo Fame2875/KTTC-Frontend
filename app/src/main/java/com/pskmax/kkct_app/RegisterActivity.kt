@@ -1,5 +1,6 @@
 package com.pskmax.kkct_app
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -24,8 +25,20 @@ class RegisterActivity : AppCompatActivity() {
         editPassword = findViewById<EditText>(R.id.editPassword)
         editCPassword = findViewById<EditText>(R.id.editCPassword)
         editId = findViewById<EditText>(R.id.editId)
-        btnRegister = findViewById<Button>(R.id.btnLogin)
+        btnRegister = findViewById<Button>(R.id.btnRegister)
         btnToLogin = findViewById<Button>(R.id.btnToLogin)
+
+        btnRegister!!.setOnClickListener{
+            // check email and password
+            if (editPassword?.length()!! < 8){}
+            else if(editPassword?.length()!! > 15){}
+            //else if(editPassword!! != editCPassword!!){}
+            // if correct
+            else {
+                val intent = Intent(this@RegisterActivity,HomeActivity::class.java)
+                startActivity(intent)
+            }
+        }
 
         btnToLogin!!.setOnClickListener{
             val intent = Intent(this@RegisterActivity,LoginActivity::class.java)

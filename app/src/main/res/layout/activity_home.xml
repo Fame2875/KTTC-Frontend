@@ -6,4 +6,121 @@
     android:layout_height="match_parent"
     tools:context=".HomeActivity">
 
+    <ImageView
+        android:id="@+id/homeBG"
+        android:layout_width="575dp"
+        android:layout_height="924dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.502"
+        app:srcCompat="@drawable/bg" />
+
+    <TextView
+        android:id="@+id/homeKKCT"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="15dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="KKCT"
+        android:textAlignment="center"
+        android:textColor="#F3FFAB"
+        android:textSize="60sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.938"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/historyLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="130dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        android:background="#FDF9D4"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/profileCardView"
+        android:layout_width="110dp"
+        android:layout_height="130dp"
+        android:layout_marginTop="195dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/profileIcon"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            app:srcCompat="@drawable/profile" />
+
+        <TextView
+            android:id="@+id/profileText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="My Profile"
+            android:textAlignment="center" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/creditCardView"
+        android:layout_width="110dp"
+        android:layout_height="130dp"
+        android:layout_marginTop="25dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profileCardView">
+
+        <ImageView
+            android:id="@+id/creditIcon"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            app:srcCompat="@drawable/checkcredit" />
+
+        <TextView
+            android:id="@+id/creditText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Check your credit"
+            android:textAlignment="center" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/historyCardView"
+        android:layout_width="110dp"
+        android:layout_height="130dp"
+        android:layout_marginTop="25dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/creditCardView">
+
+        <ImageView
+            android:id="@+id/historyIcon"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            app:srcCompat="@drawable/history" />
+
+        <TextView
+            android:id="@+id/historyText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="History"
+            android:textAlignment="center" />
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
