@@ -34,7 +34,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:id="@+id/historyLayout"
+        android:id="@+id/homeLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="15dp"
@@ -50,77 +50,101 @@
 
     </LinearLayout>
 
-    <LinearLayout
+    <androidx.cardview.widget.CardView
         android:id="@+id/profileCardView"
-        android:layout_width="110dp"
-        android:layout_height="130dp"
+        android:layout_width="120dp"
+        android:layout_height="140dp"
         android:layout_marginTop="195dp"
-        android:orientation="vertical"
+        app:cardBackgroundColor="#00FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/profileIcon"
+        <LinearLayout
+            android:id="@+id/profileLayout"
             android:layout_width="110dp"
-            android:layout_height="110dp"
-            app:srcCompat="@drawable/profile" />
+            android:layout_height="130dp"
+            android:layout_margin="5dp"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/profileText"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="My Profile"
-            android:textAlignment="center" />
+            <ImageView
+                android:id="@+id/profileIcon"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                app:srcCompat="@drawable/profile" />
 
-    </LinearLayout>
+            <TextView
+                android:id="@+id/profileText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="My Profile"
+                android:textAlignment="center" />
 
-    <LinearLayout
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
         android:id="@+id/creditCardView"
-        android:layout_width="110dp"
-        android:layout_height="130dp"
+        android:layout_width="120dp"
+        android:layout_height="140dp"
         android:layout_marginTop="25dp"
-        android:orientation="vertical"
+        app:cardBackgroundColor="#00FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profileCardView">
 
-        <ImageView
-            android:id="@+id/creditIcon"
+        <LinearLayout
+            android:id="@+id/creditLayout"
             android:layout_width="110dp"
-            android:layout_height="110dp"
-            app:srcCompat="@drawable/checkcredit" />
+            android:layout_height="130dp"
+            android:layout_margin="5dp"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/creditText"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="Check your credit"
-            android:textAlignment="center" />
-    </LinearLayout>
+            <ImageView
+                android:id="@+id/creditIcon"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                app:srcCompat="@drawable/checkcredit" />
 
-    <LinearLayout
+            <TextView
+                android:id="@+id/creditText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Check your credit"
+                android:textAlignment="center" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
         android:id="@+id/historyCardView"
-        android:layout_width="110dp"
-        android:layout_height="130dp"
+        android:layout_width="120dp"
+        android:layout_height="140dp"
         android:layout_marginTop="25dp"
-        android:orientation="vertical"
+        app:cardBackgroundColor="#00FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/creditCardView">
 
-        <ImageView
-            android:id="@+id/historyIcon"
+        <LinearLayout
+            android:id="@+id/historyLayout"
             android:layout_width="110dp"
-            android:layout_height="110dp"
-            app:srcCompat="@drawable/history" />
+            android:layout_height="130dp"
+            android:layout_margin="5dp"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/historyText"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="History"
-            android:textAlignment="center" />
-    </LinearLayout>
+            <ImageView
+                android:id="@+id/historyIcon"
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                app:srcCompat="@drawable/history" />
+
+            <TextView
+                android:id="@+id/historyText"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="History"
+                android:textAlignment="center" />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

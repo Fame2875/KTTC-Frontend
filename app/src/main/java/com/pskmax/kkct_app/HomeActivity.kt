@@ -1,7 +1,6 @@
 package com.pskmax.kkct_app
 
 import android.content.Intent
-import android.media.Image
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
@@ -10,53 +9,34 @@ import androidx.cardview.widget.CardView
 
 class HomeActivity : AppCompatActivity() {
 
-    var profileIcon: ImageView? = null
-    var profileText: TextView? = null
-    var creditIcon: ImageView? = null
-    var creditText: TextView? = null
-    var historyIcon: ImageView? = null
-    var historyText: TextView? = null
+    var profileCardView: CardView? = null
+    var creditCardView: CardView? = null
+    var historyCardView: CardView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         supportActionBar?.hide()
 
-        profileIcon = findViewById<ImageView>(R.id.profileIcon)
-        profileText = findViewById<TextView>(R.id.profileText)
-        creditIcon = findViewById<ImageView>(R.id.creditIcon)
-        creditText = findViewById<TextView>(R.id.creditText)
-        historyIcon = findViewById<ImageView>(R.id.historyIcon)
-        historyText = findViewById<TextView>(R.id.historyText)
 
-        profileIcon!!.setOnClickListener{
+        profileCardView = findViewById<CardView>(R.id.profileCardView)
+        creditCardView = findViewById<CardView>(R.id.creditCardView)
+        historyCardView = findViewById<CardView>(R.id.historyCardView)
+
+        profileCardView!!.setOnClickListener{
             val intent = Intent(this@HomeActivity,ProfileActivity::class.java)
             startActivity(intent)
         }
 
-        profileText!!.setOnClickListener{
-            val intent = Intent(this@HomeActivity,ProfileActivity::class.java)
-            startActivity(intent)
-        }
-
-        creditIcon!!.setOnClickListener{
+        creditCardView!!.setOnClickListener{
             val intent = Intent(this@HomeActivity,CreditActivity::class.java)
             startActivity(intent)
         }
 
-        creditText!!.setOnClickListener{
-            val intent = Intent(this@HomeActivity,CreditActivity::class.java)
-            startActivity(intent)
-        }
-
-        historyIcon!!.setOnClickListener{
+        historyCardView!!.setOnClickListener{
             val intent = Intent(this@HomeActivity,HistoryActivity::class.java)
             startActivity(intent)
         }
 
-        historyText!!.setOnClickListener{
-            val intent = Intent(this@HomeActivity,HistoryActivity::class.java)
-            startActivity(intent)
-        }
     }
 }
