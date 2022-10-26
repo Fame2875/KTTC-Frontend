@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import com.pskmax.kkct_app.data.Customer
 
 class LoginActivity : AppCompatActivity() {
 
@@ -27,10 +28,16 @@ class LoginActivity : AppCompatActivity() {
         btnLogin = findViewById<Button>(R.id.btnRegister)
 
         btnLogin!!.setOnClickListener{
-            // action after click login button
-            // check email and password
-            val intent = Intent(this@LoginActivity,HomeActivity::class.java)
-            startActivity(intent)
+            // match email and password
+            val customer = Customer(editEmail?.text.toString(), editPassword?.text.toString())
+            if (!customer.checkLogin()){
+                println("You fucked up")
+            }
+            // if email and password are correct
+            else{
+                val intent = Intent(this@LoginActivity,HomeActivity::class.java)
+                startActivity(intent)
+            }
         }
 
         btnToRegister!!.setOnClickListener{
