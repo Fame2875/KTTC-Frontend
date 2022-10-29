@@ -9,7 +9,7 @@ class HomeActivity : AppCompatActivity() {
 
     var profileCardView: CardView? = null
     var creditCardView: CardView? = null
-    var historyCardView: CardView? = null
+    var logCardView: CardView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,7 +19,7 @@ class HomeActivity : AppCompatActivity() {
 
         profileCardView = findViewById<CardView>(R.id.profileCardView)
         creditCardView = findViewById<CardView>(R.id.creditCardView)
-        historyCardView = findViewById<CardView>(R.id.historyCardView)
+        logCardView = findViewById<CardView>(R.id.logCardView)
 
         profileCardView!!.setOnClickListener{
             val intent = Intent(this@HomeActivity,ProfileActivity::class.java)
@@ -31,7 +31,7 @@ class HomeActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        historyCardView!!.setOnClickListener{
+        logCardView!!.setOnClickListener{
             val intent = Intent(this@HomeActivity,LogActivity::class.java)
             startActivity(intent)
         }

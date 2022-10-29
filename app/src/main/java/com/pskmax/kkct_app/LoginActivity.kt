@@ -35,6 +35,7 @@ class LoginActivity : AppCompatActivity() {
 
         val loginScreen = Login()
 
+        // temporary correct email and password
         loginScreen.setDBEmail("test@hotmail.com")
         loginScreen.setDBPwd("12345")
 
