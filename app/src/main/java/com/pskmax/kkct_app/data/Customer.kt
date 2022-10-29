@@ -40,20 +40,21 @@ class Customer (private var email : String?=null,
     }
 
     fun setUserCitizenId(db_citizen_id:String?){
-        this.citizen_id
+        this.citizen_id = db_citizen_id
     }
 
     fun getUserCitizenId():String?{
         return this.citizen_id
     }
 
-    fun fetchUserInfo(){
-        ///////////search in Database//////////
-        setUserId("From DB")
-        setUserEmail("From DB")
-        setUserPwd("From DB")
-        setUserCitizenId("From DB")
-        setUserToken("From DB")
+    fun fetchUserInfo(element: MutableList<String>,token: String){
+        ///////////api -> backend -> search in Database//////////
+        val list = element
+        setUserId(list[0])
+        setUserEmail(list[1])
+        setUserPwd(list[2])
+        setUserCitizenId(list[3])
+        setUserToken(token)
     }
 
 

@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.widget.Button
 import android.widget.EditText
+import com.pskmax.kkct_app.data.Register
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -43,6 +44,7 @@ class RegisterActivity : AppCompatActivity() {
         btnRegister = findViewById<Button>(R.id.btnRegister)
         btnToLogin = findViewById<Button>(R.id.btnToLogin)
 
+        val regScreen = Register()
         btnRegister!!.setOnClickListener{
             if (!isEmailValid((editEmail?.text).toString())){
                 println("Your Email is not correct")
@@ -61,6 +63,7 @@ class RegisterActivity : AppCompatActivity() {
             }
             else{
                 val intent = Intent(this@RegisterActivity,HomeActivity::class.java)
+                regScreen.updateUserInfo((editEmail?.text).toString(),(editPassword?.text).toString(),(editId?.text).toString())
                 startActivity(intent)
             }
         }

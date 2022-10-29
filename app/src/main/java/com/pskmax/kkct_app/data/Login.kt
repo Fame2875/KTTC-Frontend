@@ -22,7 +22,7 @@ class Login(
     }
 
     fun setDBEmail(DB :String){
-        ///////////search in Database//////////
+        ///////////connect backend -> search in Database//////////
         this.email_db = DB
     }
 
@@ -39,7 +39,7 @@ class Login(
     }
 
     fun setDBPwd(DB :String){
-        ///////////search in Database//////////
+        ///////////connect backend -> search in Database//////////
         this.pwd_db = DB
     }
 
@@ -48,7 +48,7 @@ class Login(
     }
 
     fun isRegister(ui_email :String):Boolean{
-        ///////////search in Database//////////
+        ///////////connect backend -> search in Database//////////
         if(ui_email == getDBEmail()) {
             return true
         }

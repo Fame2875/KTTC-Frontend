@@ -34,6 +34,7 @@ class LoginActivity : AppCompatActivity() {
         btnLogin = findViewById<Button>(R.id.btnRegister)
 
         val loginScreen = Login()
+        val dummy_token:String = "12345@a1234"
 
         // temporary correct email and password
         loginScreen.setDBEmail("test@hotmail.com")
@@ -60,10 +61,10 @@ class LoginActivity : AppCompatActivity() {
                     val intent = Intent(this@LoginActivity, HomeActivity::class.java)
                     println("Nice work")
                     loginScreen.generateToken()
-                    // pass ค่า user_email , user_password -> HomeActivity //
-
-
-
+                    // pass ค่า user_email , user_password, token -> HomeActivity //
+                    intent.putExtra("ui_email",(editEmail?.text).toString())
+                    intent.putExtra("ui_pwd",(editPassword?.text).toString())
+                    intent.putExtra("token",dummy_token)
                     //
                     startActivity(intent)
                 }
