@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import com.pskmax.kkct_app.data.Customer
+import com.pskmax.kkct_app.data.Login
 
 class LoginActivity : AppCompatActivity() {
 
@@ -15,6 +16,11 @@ class LoginActivity : AppCompatActivity() {
     var editPassword: EditText? = null
     var btnLogin: Button? = null
     var btnToRegister: Button? = null
+
+    private val EMAIL_REGEX = "^[A-Za-z](.*)([@]{1})(.{1,})(\\.)(.{1,})"
+    private fun isEmailValid(email: String): Boolean {
+        return EMAIL_REGEX.toRegex().matches(email);
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,16 +33,39 @@ class LoginActivity : AppCompatActivity() {
         btnToRegister = findViewById<Button>(R.id.btnToRegister)
         btnLogin = findViewById<Button>(R.id.btnRegister)
 
+        val loginScreen = Login()
+
+        loginScreen.setDBEmail("test@hotmail.com")
+        loginScreen.setDBPwd("12345")
+
         btnLogin!!.setOnClickListener{
             // match email and password
-            val customer = Customer(editEmail?.text.toString(), editPassword?.text.toString())
-            if (!customer.checkLogin()){
-                println("You fucked up")
+            loginScreen.set_Email_UI((editEmail?.text).toString())
+            loginScreen.setUiPwd((editPassword?.text).toString())
+            println(loginScreen.get_Email_UI())
+            println(loginScreen.getUiPwd())
+            if (!isEmailValid((editEmail?.text).toString())){
+                println("Your Email is not correct")
             }
-            // if email and password are correct
+            else if(!loginScreen.isRegister((editEmail?.text).toString())) {
+                println("You are dont have account yet")
+            }
             else{
-                val intent = Intent(this@LoginActivity,HomeActivity::class.java)
-                startActivity(intent)
+                if (!loginScreen.checkForLogin()){
+                    println("You fucked up")
+                }
+            // if email and password are correct
+                else {
+                    val intent = Intent(this@LoginActivity, HomeActivity::class.java)
+                    println("Nice work")
+                    loginScreen.generateToken()
+                    // pass ค่า user_email , user_password -> HomeActivity //
+
+
+
+                    //
+                    startActivity(intent)
+                }
             }
         }
 

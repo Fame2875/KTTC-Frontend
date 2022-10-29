@@ -1,42 +1,67 @@
 package com.pskmax.kkct_app.data
 
+
 class Login(
-    email_ui: String,
-    email_db: String,
-    pwd_ui: String,
-    pwd_db: String){
+    private var email_ui: String? =null,
+    private var email_db: String? = null,
+    private var pwd_ui: String? = null,
+    private var pwd_db: String? = null){
 
-    private var email_ui: String? = null
-    private var email_db: String? = null
-    private var pwd_ui: String? = null
-    private var pwd_db: String? = null
+    private var token:String? = null
 
-    init {
-        this.set_Email_DB(email_db)
-        this.set_Email_UI(email_ui)
-        this.set_Pwd_DB(pwd_db)
-        this.set_Pwd_UI(pwd_ui)
-
+    fun getToken():String?{
+        return this.token
     }
 
-    private fun set_Email_DB(a : String){
-        this.email_db = a
+    fun set_Email_UI(ui_email: String?){
+        this.email_ui = ui_email
     }
 
-    private fun set_Pwd_DB(a : String){
-        this.pwd_db = a
+    fun get_Email_UI():String?{
+        return email_ui
     }
 
-    private fun set_Email_UI(a : String){
-        this.email_ui = a
+    fun setDBEmail(DB :String){
+        ///////////search in Database//////////
+        this.email_db = DB
     }
 
-    private fun set_Pwd_UI(a : String){
-        this.pwd_ui = a
+    fun getDBEmail():String?{
+        return email_db
     }
 
-    fun compare () : Boolean{
-        if (this.email_ui == this.email_db && this.pwd_ui == this.pwd_db) {
+    fun setUiPwd(ui_pwd:String?){
+        this.pwd_ui = ui_pwd
+    }
+
+    fun getUiPwd():String?{
+        return pwd_ui
+    }
+
+    fun setDBPwd(DB :String){
+        ///////////search in Database//////////
+        this.pwd_db = DB
+    }
+
+    fun getDBPwd():String?{
+        return pwd_db
+    }
+
+    fun isRegister(ui_email :String):Boolean{
+        ///////////search in Database//////////
+        if(ui_email == getDBEmail()) {
+            return true
+        }
+        return false
+    }
+
+    fun generateToken(){
+        ////////////// token section ///////////////
+        this.token = "from generate"
+    }
+
+    fun checkForLogin () : Boolean{
+        if (get_Email_UI() == getDBEmail() && getUiPwd() == getDBPwd()) {
             return true
         }
         return false
