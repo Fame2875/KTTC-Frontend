@@ -3,8 +3,6 @@ package com.pskmax.kkct_app
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.cardview.widget.CardView
 
 class HomeActivity : AppCompatActivity() {
@@ -34,7 +32,7 @@ class HomeActivity : AppCompatActivity() {
         }
 
         historyCardView!!.setOnClickListener{
-            val intent = Intent(this@HomeActivity,HistoryActivity::class.java)
+            val intent = Intent(this@HomeActivity,LogActivity::class.java)
             startActivity(intent)
         }
 
