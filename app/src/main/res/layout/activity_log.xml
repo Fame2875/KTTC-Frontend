@@ -7,7 +7,7 @@
     tools:context=".LogActivity">
 
     <ImageView
-        android:id="@+id/historyBG"
+        android:id="@+id/logBG"
         android:layout_width="575dp"
         android:layout_height="924dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -18,7 +18,7 @@
         app:srcCompat="@drawable/bg" />
 
     <TextView
-        android:id="@+id/historyKKCT"
+        android:id="@+id/logKKCT"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
@@ -34,7 +34,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <LinearLayout
-        android:id="@+id/homeLayout"
+        android:id="@+id/logLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="15dp"
