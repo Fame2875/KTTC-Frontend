@@ -8,8 +8,9 @@
 
     <ImageView
         android:id="@+id/creditBG"
-        android:layout_width="575dp"
-        android:layout_height="924dp"
+        android:scaleType="fitXY"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
