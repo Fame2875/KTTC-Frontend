@@ -33,15 +33,15 @@ class LoginActivity : AppCompatActivity() {
 
         // ทดสอบ Animation
         val test_anim = AnimationUtils.loadAnimation(this,R.anim.fade_in);
-        val title = findViewById(R.id.registerKKCT) as TextView
+        val title = findViewById(R.id.loginKKCT) as TextView
         title.startAnimation(test_anim)
         //////////////////////////////////
 
-        loginKKCT = findViewById<TextView>(R.id.registerKKCT)
+        loginKKCT = findViewById<TextView>(R.id.loginKKCT)
         editEmail = findViewById<EditText>(R.id.editEmail)
         editPassword = findViewById<EditText>(R.id.editPassword)
         btnToRegister = findViewById<Button>(R.id.btnToRegister)
-        btnLogin = findViewById<Button>(R.id.btnRegister)
+        btnLogin = findViewById<Button>(R.id.btnLogin)
 
         val loginScreen = Login()
         val dummy_token:String = "12345@a1234"
