@@ -1,16 +1,20 @@
 package com.pskmax.kkct_app
 
+import android.animation.ObjectAnimator
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import com.pskmax.kkct_app.data.Customer
 import com.pskmax.kkct_app.data.Login
+import android.view.animation.AnimationUtils
 
 class LoginActivity : AppCompatActivity() {
 
+    var registerKKCT: TextView? = null
     var loginKKCT: TextView? = null
     var editEmail: EditText? = null
     var editPassword: EditText? = null
@@ -26,6 +30,12 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
         supportActionBar?.hide()
+
+        // ทดสอบ Animation
+        val test_anim = AnimationUtils.loadAnimation(this,R.anim.fade_in);
+        val title = findViewById(R.id.registerKKCT) as TextView
+        title.startAnimation(test_anim)
+        //////////////////////////////////
 
         loginKKCT = findViewById<TextView>(R.id.registerKKCT)
         editEmail = findViewById<EditText>(R.id.editEmail)
