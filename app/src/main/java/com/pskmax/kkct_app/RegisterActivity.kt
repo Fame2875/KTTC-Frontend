@@ -1,11 +1,10 @@
 package com.pskmax.kkct_app
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Editable
 import android.widget.Button
 import android.widget.EditText
+import androidx.appcompat.app.AppCompatActivity
 import com.pskmax.kkct_app.data.Register
 
 class RegisterActivity : AppCompatActivity() {
@@ -62,9 +61,13 @@ class RegisterActivity : AppCompatActivity() {
                 println("Your Citizen ID must have 13 characters")
             }
             else{
-                val intent = Intent(this@RegisterActivity,HomeActivity::class.java)
+                val intent = Intent(this@RegisterActivity,LoginActivity::class.java)
                 regScreen.updateUserInfo((editEmail?.text).toString(),(editPassword?.text).toString(),(editId?.text).toString())
+                // ลบ Stack ของ Intent///////////////
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
+                this.finish();
+                /////////////////////////////////////
             }
         }
 
