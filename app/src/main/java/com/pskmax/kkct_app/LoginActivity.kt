@@ -11,6 +11,8 @@ import android.widget.TextView
 import com.pskmax.kkct_app.data.Customer
 import com.pskmax.kkct_app.data.Login
 import android.view.animation.AnimationUtils
+import androidx.appcompat.widget.AppCompatButton
+import com.google.android.material.textfield.TextInputEditText
 
 class LoginActivity : AppCompatActivity() {
 
@@ -28,20 +30,22 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        setContentView(R.layout.activity_loginv2)
         supportActionBar?.hide()
 
         // ทดสอบ Animation
         val test_anim = AnimationUtils.loadAnimation(this,R.anim.fade_in);
-        val title = findViewById(R.id.loginKKCT) as TextView
-        title.startAnimation(test_anim)
+        //val title = findViewById(R.id.loginKKCT) as TextView
+        //title.startAnimation(test_anim)
         //////////////////////////////////
 
-        loginKKCT = findViewById<TextView>(R.id.loginKKCT)
-        editEmail = findViewById<EditText>(R.id.editEmail)
-        editPassword = findViewById<EditText>(R.id.editPassword)
-        btnToRegister = findViewById<Button>(R.id.btnToRegister)
-        btnLogin = findViewById<Button>(R.id.btnLogin)
+        //loginKKCT = findViewById<TextView>(R.id.loginKKCT)
+        editEmail = findViewById<TextInputEditText>(R.id.editEmail)
+        editPassword = findViewById<TextInputEditText>(R.id.editPassword)
+        btnToRegister = findViewById<AppCompatButton>(R.id.btnToRegister)
+        btnLogin = findViewById<AppCompatButton>(R.id.btnLogin)
+
+
 
         val loginScreen = Login()
         val dummy_token:String = "12345@a1234"
