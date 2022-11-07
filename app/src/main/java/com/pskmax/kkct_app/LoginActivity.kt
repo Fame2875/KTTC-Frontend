@@ -1,16 +1,14 @@
 package com.pskmax.kkct_app
 
-import android.animation.ObjectAnimator
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
+import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import com.pskmax.kkct_app.data.Customer
+import androidx.appcompat.app.AppCompatActivity
 import com.pskmax.kkct_app.data.Login
-import android.view.animation.AnimationUtils
+
 
 class LoginActivity : AppCompatActivity() {
 
@@ -51,6 +49,7 @@ class LoginActivity : AppCompatActivity() {
         loginScreen.setDBPwd("12345")
 
         btnLogin!!.setOnClickListener{
+
             // match email and password
             loginScreen.set_Email_UI((editEmail?.text).toString())
             loginScreen.setUiPwd((editPassword?.text).toString())
@@ -85,5 +84,9 @@ class LoginActivity : AppCompatActivity() {
             val intent = Intent(this@LoginActivity, RegisterActivity::class.java)
             startActivity(intent)
         }
+
+
     }
 }
+
+
