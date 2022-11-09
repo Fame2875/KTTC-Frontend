@@ -34,7 +34,7 @@ class LoginActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         // ทดสอบ Animation
-        val test_anim = AnimationUtils.loadAnimation(this,R.anim.fade_in);
+        //val test_anim = AnimationUtils.loadAnimation(this,R.anim.fade_in);
         //val title = findViewById(R.id.loginKKCT) as TextView
         //title.startAnimation(test_anim)
         //////////////////////////////////
