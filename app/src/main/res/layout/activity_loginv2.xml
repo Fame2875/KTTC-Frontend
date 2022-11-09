@@ -14,7 +14,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/gradien1">
+        android:background="@drawable/bg">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:layout_marginTop="80dp"
@@ -58,12 +58,10 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editEmail"
                 android:layout_width="match_parent"
-                android:requiresFadingEdge="horizontal"
-                android:background="@drawable/gradienfield"
-
                 android:layout_height="wrap_content"
-
-                android:hint="Email" />
+                android:background="@drawable/gradient_field"
+                android:hint="Email"
+                android:requiresFadingEdge="horizontal" />
 
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -89,9 +87,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"
-                android:background="@drawable/gradienfield"
-
-
+                android:background="@drawable/gradient_field"
+                android:maxLength="15"
                 android:hint="Password" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -108,15 +105,12 @@
 
         </androidx.appcompat.widget.AppCompatButton>
 
-
-
         <LinearLayout
             android:layout_marginTop="10dp"
             android:layout_marginBottom="-70dp"
             android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             >
             <TextView
                 android:layout_marginTop="2dp"

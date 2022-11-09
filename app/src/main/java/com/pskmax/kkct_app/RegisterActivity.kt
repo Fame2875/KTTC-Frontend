@@ -39,7 +39,7 @@ class RegisterActivity : AppCompatActivity() {
         editEmail = findViewById<EditText>(R.id.editEmail)
         editPassword = findViewById<EditText>(R.id.editPassword)
         editCPassword = findViewById<EditText>(R.id.editCPassword)
-        editId = findViewById<EditText>(R.id.editId)
+        editId = findViewById<EditText>(R.id.editID)
         btnRegister = findViewById<Button>(R.id.btnRegister)
         btnToLogin = findViewById<Button>(R.id.btnToLogin)
 
@@ -74,6 +74,9 @@ class RegisterActivity : AppCompatActivity() {
         btnToLogin!!.setOnClickListener{
 
             val intent = Intent(this@RegisterActivity,LoginActivity::class.java)
+            // ลบ Stack ของ Intent///////////////
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+            /////////////////////////////////////
             startActivity(intent)
         }
     }
