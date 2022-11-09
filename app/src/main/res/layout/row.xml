@@ -14,7 +14,9 @@
         app:cardBackgroundColor="#FFFBDC"
         app:cardCornerRadius="20dp"
         app:cardElevation="5dp"
-        app:cardMaxElevation="7dp">
+        app:cardMaxElevation="7dp"
+
+        >
 
         <TextView
             android:id="@+id/txtTitle"

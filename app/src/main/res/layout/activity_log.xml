@@ -6,33 +6,24 @@
     android:layout_height="match_parent"
     tools:context=".LogActivity">
 
-    <ImageView
-        android:id="@+id/logBG"
-        android:scaleType="fitXY"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.502"
-        app:srcCompat="@drawable/bg" />
+        android:orientation="vertical"
+        android:background="@drawable/wave"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="User Log"
+            android:textSize="34dp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:layout_gravity="center"
+            android:layout_marginVertical="23dp"
+            />
 
-    <TextView
-        android:id="@+id/logKKCT"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="15dp"
-        android:fontFamily="sans-serif-medium"
-        android:text="KKCT"
-        android:textAlignment="center"
-        android:textColor="#F3FFAB"
-        android:textSize="60sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.938"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/logLayout"
@@ -46,12 +37,14 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/gradient2">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

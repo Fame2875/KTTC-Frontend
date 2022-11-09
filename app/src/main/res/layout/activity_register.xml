@@ -10,29 +10,35 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:gravity="top"
-        android:background="@drawable/bg">
+        android:gravity="center"
+        android:background="@drawable/wave">
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/registerKKCT"
-            android:layout_width="match_parent"
+            android:layout_marginTop="50dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAlignment="viewEnd"
-            android:layout_marginTop="60dp"
-            android:layout_marginBottom="40dp"
-            android:text="KKCT"
-            android:textColor="#F3FFAB"
-            android:textSize="60sp"
+            android:text="Create Account"
+            android:textSize="32dp"
             android:textStyle="bold"
-            android:paddingStart="0dp"
-            android:paddingEnd="25dp"
+            android:textColor="@color/white"
+            >
+        </androidx.appcompat.widget.AppCompatTextView>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_marginBottom="35dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="to get started now!"
+            android:textSize="28dp"
+            android:textColor="@color/white"
             >
         </androidx.appcompat.widget.AppCompatTextView>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_marginHorizontal="20dp"
-            android:layout_marginVertical="10dp"
+            android:layout_marginVertical="2dp"
             android:layout_height="wrap_content"
             app:boxCornerRadiusBottomStart="20dp"
             app:boxCornerRadiusBottomEnd="20dp"
@@ -80,7 +86,7 @@
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_marginHorizontal="20dp"
-            android:layout_marginVertical="10dp"
+            android:layout_marginVertical="2dp"
             android:layout_height="wrap_content"
             app:boxCornerRadiusBottomStart="20dp"
             app:boxCornerRadiusBottomEnd="20dp"
@@ -98,13 +104,15 @@
                 android:hint="Confirm Password : Pwd12345"
                 android:inputType="textPassword"
                 android:maxLength="15"
-                android:requiresFadingEdge="horizontal"></com.google.android.material.textfield.TextInputEditText>
+                android:requiresFadingEdge="horizontal"
+                />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
             android:layout_marginHorizontal="20dp"
-            android:layout_marginVertical="10dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="10dp"
             android:layout_height="wrap_content"
             app:boxCornerRadiusBottomStart="20dp"
             app:boxCornerRadiusBottomEnd="20dp"
@@ -112,7 +120,9 @@
             app:boxCornerRadiusTopEnd="20dp"
             app:boxBackgroundColor="#00FFFFFF"
             app:startIconDrawable="@drawable/ic_baseline_person_24"
-            android:textColorHint="@color/white">
+            android:textColorHint="@color/white"
+            >
+
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/editID"
@@ -126,37 +136,47 @@
             </com.google.android.material.textfield.TextInputEditText>
         </com.google.android.material.textfield.TextInputLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginVertical="10dp"
-            android:layout_marginHorizontal="20dp"
-            android:gravity="end"
-            >
+
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnRegister"
+                android:layout_marginTop="100dp"
+                android:layout_width="365dp"
+                android:layout_height="50dp"
+                android:background="@drawable/btn1"
+
+                android:text="Sign up"
+                android:textColor="#FFFFFF"
+                android:textSize="18dp">
+            </androidx.appcompat.widget.AppCompatButton>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            >
+            <TextView
+                android:layout_marginTop="2dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/btn1"
-                android:text="Register"
-                android:textColor="#FFFFFF"
+                android:text="Already have an account?"
                 android:textSize="18dp"
-                android:paddingHorizontal="10dp">
-            </androidx.appcompat.widget.AppCompatButton>
+                android:textColor="@color/white" >
+
+            </TextView>
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnToLogin"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@drawable/btn1"
-                android:text="Already have an account"
+                android:background="#00FFFFFF"
+
+                android:text="Login"
                 android:textColor="#FFFFFF"
-                android:textSize="18dp"
-                android:layout_marginVertical="30dp"
-                android:paddingHorizontal="10dp">
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:textAllCaps="false">
             </androidx.appcompat.widget.AppCompatButton>
         </LinearLayout>
-
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
