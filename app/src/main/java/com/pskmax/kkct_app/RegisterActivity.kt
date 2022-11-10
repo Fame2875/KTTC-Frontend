@@ -43,7 +43,6 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
         supportActionBar?.hide()
-        url = "http://localhost:8080/api/signup"
         editEmail = findViewById<EditText>(R.id.editEmail)
         editPassword = findViewById<EditText>(R.id.editPassword)
         editCPassword = findViewById<EditText>(R.id.editCPassword)
@@ -53,31 +52,34 @@ class RegisterActivity : AppCompatActivity() {
 
         val regScreen = Register()
         btnRegister!!.setOnClickListener{
-            register00(editEmail.toString(),editEmail.toString(), editPassword.toString())
-//            if (!isEmailValid((editEmail?.text).toString())){
-//                println("Your Email is not correct")
-//            }
-//            else if (editPassword?.length()!! < 8){
-//                println("Your pass must be between 8-15 characters")
-//            }
-//            else if (!checkPassword((editPassword?.text).toString())){
-//                println("Your password must have at least 1 Uppercase, Lowercase and Numeric")
-//            }
-//            else if ((editPassword?.text).toString() != (editCPassword?.text).toString()){
-//                println("Your confirm password is not correct")
-//            }
-//            else if (editId?.length()!! < 13){
-//                println("Your Citizen ID must have 13 characters")
-//            }
-//            else{
-//                val intent = Intent(this@RegisterActivity,LoginActivity::class.java)
-//                regScreen.updateUserInfo((editEmail?.text).toString(),(editPassword?.text).toString(),(editId?.text).toString())
-//                // ลบ Stack ของ Intent///////////////
-//                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
-//                startActivity(intent)
-//                this.finish();
-//                /////////////////////////////////////
-//            }
+
+            if (!isEmailValid((editEmail?.text).toString())){
+                println("Your Email is not correct")
+            }
+            else if (editPassword?.length()!! < 8){
+                println("Your pass must be between 8-15 characters")
+            }
+            else if (!checkPassword((editPassword?.text).toString())){
+                println("Your password must have at least 1 Uppercase, Lowercase and Numeric")
+            }
+            else if ((editPassword?.text).toString() != (editCPassword?.text).toString()){
+                println("Your confirm password is not correct")
+            }
+            else if (editId?.length()!! < 13){
+                println("Your Citizen ID must have 13 characters")
+            }
+            else{
+                // ใช้ api ที่ back
+                signUp(editEmail.toString(),editPassword.toString(), editId.toString())
+
+                val intent = Intent(this@RegisterActivity,LoginActivity::class.java)
+                regScreen.updateUserInfo((editEmail?.text).toString(),(editPassword?.text).toString(),(editId?.text).toString())
+                // ลบ Stack ของ Intent///////////////
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+                startActivity(intent)
+                this.finish();
+                /////////////////////////////////////
+            }
         }
 
         btnToLogin!!.setOnClickListener{
@@ -87,14 +89,14 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
 
-    private fun register00(name: String,username : String ,password : String){
-
+    private fun signUp(email: String  ,password : String , Cid: String){
 
         val regJson = JSONObject()
-        regJson.put("name","Thanapat01")
-        regJson.put("username","oat01")
-        regJson.put("password", "password")
-
+        // รอค่า key ที่ database ที่ถูกต้องอีกที
+        regJson.put("email",email)
+        regJson.put("password",password)
+        regJson.put("citizenID", Cid)
+        // 10.0.2.2 คือค่า loopback ของ android studio , 8080 คือ port
         val url = "http://10.0.2.2:8080/api/signup"
         val jsonRequest = object : JsonObjectRequest(
             Request.Method.POST, url, regJson,
@@ -109,6 +111,7 @@ class RegisterActivity : AppCompatActivity() {
             override fun getBodyContentType(): String {
                 return "application/json"
             }
+
           }
 
         val queue = Volley.newRequestQueue(this)

@@ -4,6 +4,7 @@ import android.animation.ObjectAnimator
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -12,7 +13,12 @@ import com.pskmax.kkct_app.data.Customer
 import com.pskmax.kkct_app.data.Login
 import android.view.animation.AnimationUtils
 import androidx.appcompat.widget.AppCompatButton
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
 import com.google.android.material.textfield.TextInputEditText
+import org.json.JSONObject
 
 class LoginActivity : AppCompatActivity() {
 
@@ -90,4 +96,35 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
+
+
+    private fun customerLogin(email: String  ,password : String ){
+
+        val regJson = JSONObject()
+        // รอค่า key ที่ database ที่ถูกต้องอีกที
+        regJson.put("email",email)
+        regJson.put("password",password)
+
+        // 10.0.2.2 คือค่า loopback ของ android studio , 8080 คือ port
+        val url = "http://10.0.2.2:8080/api/login"
+        val jsonRequest = object : JsonObjectRequest(
+            Request.Method.POST, url, regJson,
+            Response.Listener{
+                    response -> Log.d("Respond",response.toString())
+            },
+            Response.ErrorListener{ error ->
+                Log.d("Response",error.toString())
+                return@ErrorListener
+            }
+        ){
+            override fun getBodyContentType(): String {
+                return "application/json"
+            }
+
+        }
+
+        val queue = Volley.newRequestQueue(this)
+        queue.add(jsonRequest)
+    }
+
 }
