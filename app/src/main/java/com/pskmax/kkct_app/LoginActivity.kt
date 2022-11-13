@@ -1,20 +1,16 @@
 package com.pskmax.kkct_app
 
-import android.animation.ObjectAnimator
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
-import com.pskmax.kkct_app.data.Customer
 import com.pskmax.kkct_app.data.Login
-import android.view.animation.AnimationUtils
 import androidx.appcompat.widget.AppCompatButton
 import com.google.android.material.textfield.TextInputEditText
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : AppCompatActivity(){
 
     var registerKKCT: TextView? = null
     var loginKKCT: TextView? = null
@@ -45,8 +41,6 @@ class LoginActivity : AppCompatActivity() {
         btnToRegister = findViewById<AppCompatButton>(R.id.btnToRegister)
         btnLogin = findViewById<AppCompatButton>(R.id.btnLogin)
 
-
-
         val loginScreen = Login()
         val dummy_token:String = "12345@a1234"
 
@@ -72,7 +66,8 @@ class LoginActivity : AppCompatActivity() {
                 }
             // if email and password are correct
                 else {
-                    val intent = Intent(this@LoginActivity, HomeActivity::class.java)
+//                    val intent = Intent(this@LoginActivity, HomeActivity::class.java)
+                    val intent = Intent(this@LoginActivity, LoadActivity::class.java)
                     println("Nice work")
                     loginScreen.generateToken()
                     // pass ค่า user_email , user_password, token -> HomeActivity //
