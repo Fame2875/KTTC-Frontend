@@ -34,6 +34,7 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        changeFragment(HomeFragment())
         supportActionBar?.hide()
 
         val user = Customer()
@@ -59,8 +60,6 @@ class HomeActivity : AppCompatActivity() {
         binding.bottomNav.setOnItemSelectedListener {
             when(it.itemId){
                 R.id.home -> changeFragment(HomeFragment())
-                R.id.profile -> changeFragment(ProfileFragment())
-                R.id.credit -> changeFragment(CreditFragment())
                 R.id.log -> changeFragment(LogFragment())
                 R.id.settings -> changeFragment(SettingsFragment())
             }

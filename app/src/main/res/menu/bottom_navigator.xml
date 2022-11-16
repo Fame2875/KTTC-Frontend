@@ -4,12 +4,6 @@
     <item android:title="Home"
         android:id="@+id/home"
         android:icon="@drawable/ic_baseline_home_24"/>
-    <item android:title="Profile"
-        android:id="@+id/profile"
-        android:icon="@drawable/ic_baseline_person_24"/>
-    <item android:title="Credit"
-        android:id="@+id/credit"
-        android:icon="@drawable/ic_baseline_credit_card_24"/>
     <item android:title="Log"
         android:id="@+id/log"
         android:icon="@drawable/ic_baseline_history_edu_24"/>
