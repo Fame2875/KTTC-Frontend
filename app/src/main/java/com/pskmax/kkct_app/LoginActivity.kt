@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import com.pskmax.kkct_app.data.Login
 import androidx.appcompat.widget.AppCompatButton
 import com.android.volley.Request
@@ -58,7 +59,7 @@ class LoginActivity : AppCompatActivity(),IVolley{
         loginScreen.setDBPwd("12345")
 
         btnLogin!!.setOnClickListener{
-            customerLogin((editEmail?.text).toString(),(editPassword?.text).toString())
+            //customerLogin((editEmail?.text).toString(),(editPassword?.text).toString())
             // match email and password
             loginScreen.set_Email_UI((editEmail?.text).toString())
             loginScreen.setUiPwd((editPassword?.text).toString())
@@ -66,19 +67,23 @@ class LoginActivity : AppCompatActivity(),IVolley{
             println(loginScreen.getUiPwd())
             if (!isEmailValid((editEmail?.text).toString())){
                 println("Your Email is not correct")
+                Toast.makeText(applicationContext,"Your Email is not correct",Toast.LENGTH_SHORT).show()
             }
             else if(!loginScreen.isRegister((editEmail?.text).toString())) {
                 println("You are dont have account yet")
+                Toast.makeText(applicationContext,"You are dont have account yet",Toast.LENGTH_SHORT).show()
             }
             else{
                 if (!loginScreen.checkForLogin()){
                     println("You fucked up")
+                    Toast.makeText(applicationContext,"Your Email is not correct",Toast.LENGTH_SHORT).show()
                 }
             // if email and password are correct
                 else {
 //                    val intent = Intent(this@LoginActivity, HomeActivity::class.java)
                     val intent = Intent(this@LoginActivity, LoadActivity::class.java)
                     println("Nice work")
+                    Toast.makeText(applicationContext,"Please wait!",Toast.LENGTH_SHORT).show()
                     loginScreen.generateToken()
                     // pass ค่า user_email , user_password, token -> HomeActivity //
                     intent.putExtra("ui_email",(editEmail?.text).toString())

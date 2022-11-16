@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.android.volley.Request
 import com.android.volley.Response
@@ -60,18 +61,24 @@ class RegisterActivity : AppCompatActivity() {
 
             if (!isEmailValid((editEmail?.text).toString())){
                 println("Your Email is not correct")
+                Toast.makeText(applicationContext,"Your Email is not correct", Toast.LENGTH_SHORT).show()
             }
             else if (editPassword?.length()!! < 8){
                 println("Your pass must be between 8-15 characters")
+                Toast.makeText(applicationContext,"Your pass must be between 8-15 characters", Toast.LENGTH_SHORT).show()
             }
             else if (!checkPassword((editPassword?.text).toString())){
                 println("Your password must have at least 1 Uppercase, Lowercase and Numeric")
+                Toast.makeText(applicationContext,"Your password must have at least 1 Uppercase, Lowercase and Numeric", Toast.LENGTH_SHORT).show()
+
             }
             else if ((editPassword?.text).toString() != (editCPassword?.text).toString()){
                 println("Your confirm password is not correct")
+                Toast.makeText(applicationContext,"Your confirm password is not correct", Toast.LENGTH_SHORT).show()
             }
             else if (editId?.length()!! < 13){
                 println("Your Citizen ID must have 13 characters")
+                Toast.makeText(applicationContext,"Your Citizen ID must have 13 characters", Toast.LENGTH_SHORT).show()
             }
             else{
                 //ของโอ๊ต
@@ -79,6 +86,7 @@ class RegisterActivity : AppCompatActivity() {
 
                 val intent = Intent(this@RegisterActivity,LoginActivity::class.java)
                 regScreen.updateUserInfo((editEmail?.text).toString(),(editPassword?.text).toString(),(editId?.text).toString())
+                Toast.makeText(applicationContext,"Sign Up Complete!", Toast.LENGTH_SHORT).show()
                 // ลบ Stack ของ Intent///////////////
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)

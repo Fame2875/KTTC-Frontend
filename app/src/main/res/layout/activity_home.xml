@@ -12,11 +12,14 @@
         android:orientation="vertical"
         android:background="#151B3E">
 
+
         <FrameLayout
             android:id="@+id/frame_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"></FrameLayout>
+            android:layout_weight="1">
+
+        </FrameLayout>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_nav"
@@ -24,8 +27,8 @@
             android:layout_height="wrap_content"
             android:background="#afcde5"
             app:menu="@menu/bottom_navigator">
-        </com.google.android.material.bottomnavigation.BottomNavigationView>
-<!--        <TextView-->
+                </com.google.android.material.bottomnavigation.BottomNavigationView>
+        <!--        <TextView-->
 <!--            android:id="@+id/homeKKCT"-->
 <!--            android:layout_width="match_parent"-->
 <!--            android:layout_height="wrap_content"-->
