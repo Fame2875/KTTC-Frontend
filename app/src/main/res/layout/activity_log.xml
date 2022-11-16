@@ -7,21 +7,21 @@
     tools:context=".LogActivity">
 
     <LinearLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:background="@drawable/wave"
-        >
+        android:orientation="vertical">
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="User Log"
-            android:textSize="34dp"
-            android:textStyle="bold"
-            android:textColor="@color/white"
             android:layout_gravity="center"
             android:layout_marginVertical="23dp"
-            />
+            android:text="User Log"
+            android:textColor="@color/white"
+            android:textSize="34dp"
+            android:textStyle="bold" />
 
     </LinearLayout>
 
@@ -30,21 +30,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="15dp"
-        android:layout_marginTop="130dp"
+        android:layout_marginTop="100dp"
         android:layout_marginEnd="15dp"
         android:layout_marginBottom="15dp"
+        android:background="@drawable/gradient2"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/gradient2">
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            />
+            android:layout_height="match_parent" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -20,6 +22,30 @@ class LogFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
+    var logRecyclerView: RecyclerView? = null
+
+    // Log Data from DB
+    private var log = arrayOf(
+        "Log 1 : ไม้โมก",
+        "Log 2 : เป็น",
+        "Log 3 : ประธาน",
+        "Log 4 : ชมรม",
+        "Log 5 : คน",
+        "Log 6 : ชอบ",
+        "Log 7 : หี",
+        "Log 8 : ที่",
+        "Log 9 : มี",
+        "Log 10 : สมาชิก",
+        "Log 11 : ใน",
+        "Log 12 : ชมรม",
+        "Log 13 : คือ",
+        "Log 14 : พวก",
+        "Log 15 : มึง",
+        "Log 16 : ที่",
+        "Log 17 : อ่าน",
+        "Log 18 : นี่",
+        "Log 19 : แหละ",
+    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,6 +53,11 @@ class LogFragment : Fragment() {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+
+        logRecyclerView = findViewById<RecyclerView>(R.id.logRecyclerView)
+        logRecyclerView!!.layoutManager = LinearLayoutManager(this)
+        val logAdapter = LogRecycleView(log,this)
+        logRecyclerView!!.adapter = logAdapter
     }
 
     override fun onCreateView(
