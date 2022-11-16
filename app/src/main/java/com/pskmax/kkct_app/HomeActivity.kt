@@ -4,9 +4,14 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.cardview.widget.CardView
+import androidx.fragment.app.Fragment
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.pskmax.kkct_app.data.Customer
+import com.pskmax.kkct_app.databinding.ActivityHomeBinding
 
 class HomeActivity : AppCompatActivity() {
+
+    private lateinit var binding : ActivityHomeBinding
 
     var profileCardView: CardView? = null
     var creditCardView: CardView? = null
@@ -18,9 +23,17 @@ class HomeActivity : AppCompatActivity() {
         return element
     }
 
+    private fun changeFragment(fragment : Fragment) {
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        fragmentTransaction.replace(R.id.frame_layout,fragment)
+        fragmentTransaction.commit()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_home)
+        binding = ActivityHomeBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         supportActionBar?.hide()
 
         val user = Customer()
@@ -43,27 +56,38 @@ class HomeActivity : AppCompatActivity() {
         user.fetchUserInfo(getFromBackEnd(login_email,login_pwd),login_token)
         println("${user.getUserId()} ${user.getUserEmail()} ${user.getUserPwd()} ${user.getUserCitizenId()} ${user.getUserToken()}")
 
-        profileCardView = findViewById<CardView>(R.id.profileCardView)
-        creditCardView = findViewById<CardView>(R.id.creditCardView)
-        logCardView = findViewById<CardView>(R.id.logCardView)
-
-        profileCardView!!.setOnClickListener{
-            val intent = Intent(this@HomeActivity,ProfileActivity::class.java)
-            //// ส่งค่าไป ProfileActivity intent.putExtra(key,var) ////
-            intent.putExtra("user_email",user.getUserEmail())
-            intent.putExtra("user_citizen_id",user.getUserCitizenId())
-            startActivity(intent)
+        binding.bottomNav.setOnItemSelectedListener {
+            when(it.itemId){
+                R.id.home -> changeFragment(HomeFragment())
+                R.id.profile -> changeFragment(ProfileFragment())
+                R.id.credit -> changeFragment(CreditFragment())
+                R.id.log -> changeFragment(LogFragment())
+                R.id.settings -> changeFragment(SettingsFragment())
+            }
+            true
         }
 
-        creditCardView!!.setOnClickListener{
-            val intent = Intent(this@HomeActivity,CreditActivity::class.java)
-            startActivity(intent)
-        }
-
-        logCardView!!.setOnClickListener{
-            val intent = Intent(this@HomeActivity,LogActivity::class.java)
-            startActivity(intent)
-        }
+//        profileCardView = findViewById<CardView>(R.id.profileCardView)
+//        creditCardView = findViewById<CardView>(R.id.creditCardView)
+//        logCardView = findViewById<CardView>(R.id.logCardView)
+//
+//        profileCardView!!.setOnClickListener{
+//            val intent = Intent(this@HomeActivity,ProfileActivity::class.java)
+//            //// ส่งค่าไป ProfileActivity intent.putExtra(key,var) ////
+//            intent.putExtra("user_email",user.getUserEmail())
+//            intent.putExtra("user_citizen_id",user.getUserCitizenId())
+//            startActivity(intent)
+//        }
+//
+//        creditCardView!!.setOnClickListener{
+//            val intent = Intent(this@HomeActivity,CreditActivity::class.java)
+//            startActivity(intent)
+//        }
+//
+//        logCardView!!.setOnClickListener{
+//            val intent = Intent(this@HomeActivity,LogActivity::class.java)
+//            startActivity(intent)
+//        }
 
     }
 }
