@@ -6,6 +6,7 @@ import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import com.pskmax.kkct_app.data.Customer
 import com.pskmax.kkct_app.databinding.ActivityHomeBinding
+import java.util.Date
 
 class HomeActivity : AppCompatActivity() {
 
@@ -35,10 +36,23 @@ class HomeActivity : AppCompatActivity() {
         changeFragment(HomeFragment())
         supportActionBar?.hide()
 
+        /////////User Datas & Token/////////
         val user = Customer()
         var login_email:String = ""
         var login_pwd:String = ""
         var login_token:String = ""
+
+        /////////History Transaction/////////
+        var id : String? = null
+        var customerID : String? = null
+        var dueDate : Date? = null
+        var unpaid : Double? = null
+        var entrepreneurID : String? = null
+        var transactionInfo : Double? = null
+        var transactionDate : Date? = null
+        /////////Credit Calculation/////////
+        var creditScore : Float? = null
+        var recommend : String? = null
 
         //// รับค่าจาก LoginActivity ////
         intent.extras?.get("ui_email")?.let {

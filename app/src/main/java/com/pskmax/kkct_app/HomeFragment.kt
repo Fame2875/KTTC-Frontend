@@ -54,4 +54,15 @@ class HomeFragment : Fragment() {
             changeFragments(UnpaidFragment())
         }
     }
+
+    companion object {
+
+        @JvmStatic
+        fun newInstance(isMyBoolean: Boolean) = HomeFragment().apply {
+            arguments = Bundle().apply {
+                putBoolean("REPLACE WITH A STRING CONSTANT", isMyBoolean)
+            }
+        }
+    }
+
 }
