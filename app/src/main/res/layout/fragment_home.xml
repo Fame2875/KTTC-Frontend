@@ -9,8 +9,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -24,22 +24,24 @@
                 android:src="@drawable/logov3" />
 
             <TextView
-                android:id="@+id/logHistory"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_weight="8"
-                android:textAlignment="center"
-                android:gravity="center"
                 android:text="Home"
+                android:textAlignment="center"
                 android:textColor="#FFFFFF"
-                android:textSize="34dp" />
+                android:textSize="29dp"
+                android:textStyle="bold" />
+
             <ImageView
                 android:id="@+id/profileUser"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_weight="1"
-                android:src="@drawable/profile"
-                android:padding="20sp"/>
+                android:padding="20sp"
+                android:src="@drawable/profile" />
         </LinearLayout>
 
         <LinearLayout
@@ -51,40 +53,41 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:layout_marginHorizontal="25sp"
+                android:layout_marginVertical="25sp"
+                android:layout_weight="1"
                 android:background="@drawable/rounded_ui"
                 android:clickable="true"
-                android:layout_marginVertical="25sp"
-                android:layout_marginHorizontal="25sp"
-                android:padding="20sp"
-                android:layout_weight="1">
+                android:orientation="vertical"
+                android:padding="20sp">
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="Latest transaction"
-                    android:textSize="20sp"
-                    android:layout_weight="1">
-                </TextView>
+                    android:textSize="20sp"></TextView>
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="4"
                     android:text="Transactions"
-                    android:textSize="20sp"
-                    android:layout_weight="4">
-                </TextView>
+                    android:textSize="20sp"></TextView>
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="4"
                     android:text="Date"
-                    android:textSize="20sp"
-                    android:layout_weight="4">
-                </TextView>
+                    android:textSize="20sp"></TextView>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
+                    android:layout_weight="1"
                     android:gravity="end"
-                    android:layout_weight="1">
+                    android:orientation="horizontal">
 
                     <Button
                         android:id="@+id/seeTrans"
@@ -93,43 +96,45 @@
                         android:text="More"></Button>
                 </LinearLayout>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:layout_marginHorizontal="25sp"
+                android:layout_marginVertical="25sp"
+                android:layout_weight="1"
                 android:background="@drawable/rounded_ui"
                 android:clickable="true"
-                android:layout_marginVertical="25sp"
-                android:layout_marginHorizontal="25sp"
-                android:padding="20sp"
-                android:layout_weight="1">
+                android:orientation="vertical"
+                android:padding="20sp">
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="1"
                     android:text="Latest unpaid"
-                    android:textSize="20sp"
-                    android:layout_weight="1">
-                </TextView>
+                    android:textSize="20sp"></TextView>
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="4"
                     android:text="Unpaid"
-                    android:textSize="20sp"
-                    android:layout_weight="4">
-                </TextView>
+                    android:textSize="20sp"></TextView>
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_weight="4"
                     android:text="Due date"
-                    android:textSize="20sp"
-                    android:layout_weight="4">
-                </TextView>
+                    android:textSize="20sp"></TextView>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
+                    android:layout_weight="1"
                     android:gravity="end"
-                    android:layout_weight="1">
+                    android:orientation="horizontal">
 
                     <Button
                         android:id="@+id/seeUnpaid"
