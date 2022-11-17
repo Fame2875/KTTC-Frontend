@@ -1,11 +1,9 @@
 package com.pskmax.kkct_app
 
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.pskmax.kkct_app.data.Customer
 import com.pskmax.kkct_app.databinding.ActivityHomeBinding
 
@@ -65,6 +63,7 @@ class HomeActivity : AppCompatActivity() {
             }
             true
         }
+
 
 //        profileCardView = findViewById<CardView>(R.id.profileCardView)
 //        creditCardView = findViewById<CardView>(R.id.creditCardView)
