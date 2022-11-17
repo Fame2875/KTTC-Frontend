@@ -78,28 +78,5 @@ class HomeActivity : AppCompatActivity() {
             true
         }
 
-
-//        profileCardView = findViewById<CardView>(R.id.profileCardView)
-//        creditCardView = findViewById<CardView>(R.id.creditCardView)
-//        logCardView = findViewById<CardView>(R.id.logCardView)
-//
-//        profileCardView!!.setOnClickListener{
-//            val intent = Intent(this@HomeActivity,ProfileActivity::class.java)
-//            //// ส่งค่าไป ProfileActivity intent.putExtra(key,var) ////
-//            intent.putExtra("user_email",user.getUserEmail())
-//            intent.putExtra("user_citizen_id",user.getUserCitizenId())
-//            startActivity(intent)
-//        }
-//
-//        creditCardView!!.setOnClickListener{
-//            val intent = Intent(this@HomeActivity,CreditActivity::class.java)
-//            startActivity(intent)
-//        }
-//
-//        logCardView!!.setOnClickListener{
-//            val intent = Intent(this@HomeActivity,LogActivity::class.java)
-//            startActivity(intent)
-//        }
-
     }
 }
