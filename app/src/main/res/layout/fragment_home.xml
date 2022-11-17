@@ -85,11 +85,12 @@
                     android:orientation="horizontal"
                     android:gravity="end"
                     android:layout_weight="1">
+
                     <Button
+                        android:id="@+id/seeTrans"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="More">
-                    </Button>
+                        android:text="More"></Button>
                 </LinearLayout>
             </LinearLayout>
             <LinearLayout
@@ -129,11 +130,12 @@
                     android:orientation="horizontal"
                     android:gravity="end"
                     android:layout_weight="1">
+
                     <Button
+                        android:id="@+id/seeUnpaid"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="More">
-                    </Button>
+                        android:text="More"></Button>
                 </LinearLayout>
             </LinearLayout>
 
