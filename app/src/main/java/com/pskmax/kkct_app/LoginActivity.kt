@@ -11,6 +11,7 @@ import com.google.android.material.textfield.TextInputEditText
 import com.pskmax.kkct_app.data.Login
 import com.pskmax.kkct_app.myVolley.IVolley
 import com.pskmax.kkct_app.myVolley.MyVolleyRequest
+import org.json.JSONObject
 
 class LoginActivity : AppCompatActivity(),IVolley{
 
@@ -27,13 +28,14 @@ class LoginActivity : AppCompatActivity(),IVolley{
     }
     override fun onResponse(response: String) {
         println(response)
-        res = response
+         //JSONObject(response)
+        res = JSONObject(response).getString("access_token")
+        println(res)
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_loginv2)
         supportActionBar?.hide()
-
         // ทดสอบ Animation
         //val test_anim = AnimationUtils.loadAnimation(this,R.anim.fade_in);
         //val title = findViewById(R.id.loginKKCT) as TextView
@@ -54,7 +56,7 @@ class LoginActivity : AppCompatActivity(),IVolley{
         loginScreen.setDBPwd("12345")
 
         btnLogin!!.setOnClickListener{
-            //customerLogin((editEmail?.text).toString(),(editPassword?.text).toString())
+            customerLogin((editEmail?.text).toString(),(editPassword?.text).toString())
             // match email and password
             loginScreen.set_Email_UI((editEmail?.text).toString())
             loginScreen.setUiPwd((editPassword?.text).toString())
@@ -67,7 +69,7 @@ class LoginActivity : AppCompatActivity(),IVolley{
                 println("You are dont have account yet")
             }
             else{
-                if (!loginScreen.checkForLogin()){
+                if (!loginScreen.checkForLogin() && (res == null)){
                     println("You fucked up")
                 }
             // if email and password are correct

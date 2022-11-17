@@ -9,6 +9,9 @@ import com.android.volley.toolbox.ImageLoader
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import org.json.JSONObject
+
+
 
 class MyVolleyRequest {
     private var mRequestQueue:RequestQueue?=null
@@ -58,7 +61,7 @@ class MyVolleyRequest {
         requestQueue.add(req);
     }
 
-    //Get method
+    //simple Get method
     fun getRequest(url:String){
         val getRequest = JsonObjectRequest(Request.Method.GET,url,null,Response.Listener { response->
             iVolley!!.onResponse(response.toString())
@@ -66,6 +69,40 @@ class MyVolleyRequest {
             iVolley!!.onResponse(error.message!!)
         })
         addToRequestQueue(getRequest)
+    }
+
+    fun getRequestWithHeader(url: String,accessToken: String){
+        val getRequest = object : StringRequest(Request.Method.GET,url,
+            Response.Listener { response ->
+                iVolley!!.onResponse(response.toString())
+            },Response.ErrorListener { error -> iVolley!!.onResponse(error.message!!) })
+        {
+            override fun getHeaders(): MutableMap<String, String> {
+                val headers = HashMap<String,String>()
+                headers["Authorization"] = "Bearer $accessToken"
+                return headers
+            }
+        }
+        addToRequestQueue(getRequest)
+    }
+
+    //POST method with body
+    fun postRequestWithBody(url: String,requestBody:JSONObject){
+
+        val postRequest = object : StringRequest(Request.Method.POST,url,
+            Response.Listener { response ->
+                iVolley!!.onResponse(response.toString())
+            },Response.ErrorListener { error -> iVolley!!.onResponse(error.message!!) })
+        {
+            override fun getBodyContentType(): String {
+                return "application/json"
+            }
+
+            override fun getBody(): ByteArray {
+                return requestBody.toString().toByteArray(Charsets.UTF_8)
+            }
+        }
+        addToRequestQueue(postRequest)
     }
 
     //POST method with params
@@ -77,9 +114,14 @@ class MyVolleyRequest {
         {
             override fun getParams(): MutableMap<String, String> {
                 val params = HashMap<String,String>()
-                params["name"] = "oat"
-                params["value"] = "post form app"
+                params["email"] = "tsttest@gmail.com"
+                params["password"] = "Testt14345678"
+                params["citizenID"]     =  "12345678910123"
                 return params
+            }
+
+            override fun getBodyContentType(): String {
+                return "application/json"
             }
         }
             addToRequestQueue(postRequest)
