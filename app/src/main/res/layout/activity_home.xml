@@ -10,14 +10,29 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:background="#151B3E">
+        android:background="@drawable/wave">
 
 
         <FrameLayout
             android:id="@+id/frame_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:layout_weight="1"
+
+
+            >
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:background="@drawable/bg2"
+                >
+
+
+
+
+
+            </LinearLayout>
 
         </FrameLayout>
 
@@ -25,7 +40,7 @@
             android:id="@+id/bottom_nav"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#afcde5"
+            android:background="#E0E0E5"
             app:menu="@menu/bottom_navigator">
                 </com.google.android.material.bottomnavigation.BottomNavigationView>
         <!--        <TextView-->

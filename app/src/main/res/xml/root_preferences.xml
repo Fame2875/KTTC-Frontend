@@ -5,26 +5,20 @@
     >
 
     <PreferenceCategory
-        app:title=" ">
-
-    </PreferenceCategory>
-    <PreferenceCategory
         app:title="General"
         >
-        <SwitchPreference
-            app:key="theme_preference"
-            app:defaultValue="true"
-            app:title="Dark Theme"
-
+        <Preference
+            app:title="What"
             />
 
-
-        <SwitchPreference
-            app:key="notification_preference"
-            app:defaultValue="true"
-            app:title="Notification"
-
+        <Preference
+            app:title="Going"
             />
+
+        <Preference
+            app:title="On"
+            />
+
 
     </PreferenceCategory>
 
