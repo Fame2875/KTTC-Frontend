@@ -3,14 +3,18 @@ package com.pskmax.kkct_app
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.cardview.widget.CardView
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import com.pskmax.kkct_app.data.Customer
 import com.pskmax.kkct_app.databinding.ActivityHomeBinding
 
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityHomeBinding
-
+    var login_email:String = ""
+    var login_pwd:String = ""
+    var login_token:String = ""
     var profileCardView: CardView? = null
     var creditCardView: CardView? = null
     var logCardView: CardView? = null
@@ -22,17 +26,26 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun changeFragment(fragment : Fragment) {
-        val fragmentManager = supportFragmentManager
-        val fragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(R.id.frame_layout,fragment)
-        fragmentTransaction.commit()
+        //val fragmentManager = supportFragmentManager
+        //val fragmentTransaction = fragmentManager.beginTransaction()
+        //fragmentTransaction.replace(R.id.frame_layout,fragment)
+        //fragmentTransaction.commit()
+        //val bundle = Bundle()
+
+        //bundle.putString("usEmail",login_email)
+        //bundle.putString("usPwd",login_pwd)
+        //bundle.putString("usToken",login_token)
+        //println("Sending data")
+        //fragment.arguments = bundle
+        supportFragmentManager.beginTransaction().replace(R.id.frame_layout,fragment).commit()
+
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        changeFragment(HomeFragment())
+        //supportFragmentManager.beginTransaction().replace(R.id.frame_layout,HomeFragment()).commit()
         supportActionBar?.hide()
 
         val user = Customer()
@@ -40,20 +53,32 @@ class HomeActivity : AppCompatActivity() {
         var login_pwd:String = ""
         var login_token:String = ""
 
-        //// รับค่าจาก LoginActivity ////
+        //// รับค่าจาก LoadActivity ////
         intent.extras?.get("ui_email")?.let {
             login_email = it.toString()
+            println("${login_email } HomeActivity")
         }
         intent.extras?.get("ui_pwd")?.let {
             login_pwd = it.toString()
+            println("${login_pwd } HomeActivity")
         }
         intent.extras?.get("token")?.let {
             login_token = it.toString()
+            println("${login_token } HomeActivity")
         }
+        //changeFragment(HomeFragment())
+        ////// bundle ค่าจาก home ไป homefragment ////
+        val fragment = HomeFragment()
+        val bundle = Bundle()
+        bundle.putString("usEmail",login_email)
+        bundle.putString("usPwd",login_pwd)
+        bundle.putString("usToken",login_token)
+        fragment.arguments = bundle
+        supportFragmentManager.beginTransaction().replace(R.id.frame_layout,fragment).commit()
 
         ////// api query ////
         user.fetchUserInfo(getFromBackEnd(login_email,login_pwd),login_token)
-        println("${user.getUserId()} ${user.getUserEmail()} ${user.getUserPwd()} ${user.getUserCitizenId()} ${user.getUserToken()}")
+        //println("${user.getUserId()} ${user.getUserEmail()} ${user.getUserPwd()} ${user.getUserCitizenId()} ${user.getUserToken()}")
 
         binding.bottomNav.setOnItemSelectedListener {
             when(it.itemId){

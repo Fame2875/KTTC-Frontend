@@ -1,6 +1,5 @@
 package com.pskmax.kkct_app
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,12 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 
 class HomeFragment : Fragment() {
 
     private var profileButton : ImageView? = null
     private var transactionButton : Button? = null
     private var unpaidButton : Button? = null
+    private lateinit var tranInfoText : TextView
+    private lateinit var tranDateInfoText : TextView
+    var tranInfoTemp :String? = null
+    var tranDateTemp :String? = null
 
     private fun changeFragments(fragment : Fragment){
         val fragmentManager = activity?.supportFragmentManager
@@ -26,6 +30,9 @@ class HomeFragment : Fragment() {
         super.onCreate(savedInstanceState)
         arguments?.let {
         }
+
+
+
     }
 
     override fun onCreateView(
@@ -41,7 +48,25 @@ class HomeFragment : Fragment() {
         profileButton = view.findViewById(R.id.profileUser)
         transactionButton = view.findViewById(R.id.seeTrans)
         unpaidButton = view.findViewById(R.id.seeUnpaid)
+        tranInfoText = view.findViewById(R.id.tranInfo)
+        tranDateInfoText = view.findViewById(R.id.tranDateInfo)
 
+        // recieve data //
+        val data = arguments
+        if (data != null) {
+            tranInfoTemp = data.get("usEmail").toString()
+            tranDateTemp = data.get("usToken").toString()
+            println("{$tranInfoTemp} Fragment")
+            println("{$tranDateTemp} Fragment")
+            println("Done Loading")
+        }
+        else {
+            println("load failed")
+        }
+
+        tranInfoText.text = tranInfoTemp
+        tranDateInfoText.text = tranDateTemp
+        ////////////////////////
         profileButton!!.setOnClickListener {
             changeFragments(ProfileFragment())
         }

@@ -82,12 +82,13 @@ class LoginActivity : AppCompatActivity(),IVolley{
                 else {
 //                    val intent = Intent(this@LoginActivity, HomeActivity::class.java)
                     val intent = Intent(this@LoginActivity, LoadActivity::class.java)
+
                     println("Nice work")
                     Toast.makeText(applicationContext,"Please wait!",Toast.LENGTH_SHORT).show()
                     loginScreen.generateToken()
                     // pass ค่า user_email , user_password, token -> HomeActivity //
-                    intent.putExtra("ui_email",(editEmail?.text).toString())
-                    intent.putExtra("ui_pwd",(editPassword?.text).toString())
+                    intent.putExtra("ui_email",loginScreen.get_Email_UI())
+                    intent.putExtra("ui_pwd",loginScreen.getUiPwd())
                     intent.putExtra("token",dummy_token)
                     //
                     startActivity(intent)
