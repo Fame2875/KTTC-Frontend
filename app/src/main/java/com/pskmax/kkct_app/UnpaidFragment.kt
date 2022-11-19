@@ -56,4 +56,15 @@ class UnpaidFragment : Fragment() {
         val logAdapter = LogRecycleView(log,requireContext())
         logRecyclerView!!.adapter = logAdapter
     }
+
+    companion object {
+
+        @JvmStatic
+        fun newInstance(isMyBoolean: Boolean) = UnpaidFragment().apply {
+            arguments = Bundle().apply {
+                putBoolean("REPLACE WITH A STRING CONSTANT", isMyBoolean)
+            }
+        }
+    }
+
 }

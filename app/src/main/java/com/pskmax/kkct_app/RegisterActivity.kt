@@ -7,15 +7,21 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.JsonObjectRequest
+import com.android.volley.toolbox.Volley
 //import com.android.volley.Request
 //import com.android.volley.Response
 //import com.android.volley.toolbox.JsonObjectRequest
 //import com.android.volley.toolbox.StringRequest
 //import com.android.volley.toolbox.Volley
 import com.pskmax.kkct_app.data.Register
+import com.pskmax.kkct_app.myVolley.IVolley
+import com.pskmax.kkct_app.myVolley.MyVolleyRequest
 import org.json.JSONObject
 
-class RegisterActivity : AppCompatActivity() {
+class RegisterActivity : AppCompatActivity(), IVolley {
 
     var editEmail: EditText? = null
     var editPassword: EditText? = null
@@ -23,7 +29,12 @@ class RegisterActivity : AppCompatActivity() {
     var editId: EditText? = null
     var btnRegister: Button? = null
     var btnToLogin: Button? = null
-    var url:String?= null
+    var url:String = "http://localhost:8080/api/signup"
+
+    override fun onResponse(response: String) {
+        //ส่ง response กลับมา
+        println(response)
+    }
 
     private fun checkPassword(string: String) : Boolean{
         val (letters , numeric) = string.partition { it.isLetter() }
@@ -44,7 +55,7 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
         supportActionBar?.hide()
-        url = "http://localhost:8080/api/signup"
+        url = "http://10.0.2.2:8093/api/signup"
         editEmail = findViewById<EditText>(R.id.editEmail)
         editPassword = findViewById<EditText>(R.id.editPassword)
         editCPassword = findViewById<EditText>(R.id.editCPassword)
@@ -55,7 +66,8 @@ class RegisterActivity : AppCompatActivity() {
         val regScreen = Register()
         btnRegister!!.setOnClickListener{
             //ของโอ๊ต
-//            register00(editEmail.toString(),editEmail.toString(), editPassword.toString())
+            register00((editEmail?.text).toString(),(editPassword?.text).toString(), (editId?.text).toString())
+
             if (!isEmailValid((editEmail?.text).toString())){
                 println("Your Email is not correct")
                 Toast.makeText(applicationContext,"Your Email is not correct", Toast.LENGTH_SHORT).show()
@@ -99,15 +111,19 @@ class RegisterActivity : AppCompatActivity() {
         }
     }
     //ของโอ๊ต
-//    private fun register00(name: String,username : String ,password : String){
-//
-//
-//        val regJson = JSONObject()
-//        regJson.put("name","Thanapat01")
-//        regJson.put("username","oat01")
-//        regJson.put("password", "password")
-//
-//        val url = "http://10.0.2.2:8080/api/signup"
+    private fun register00(name: String,password : String,citizenID:String){
+
+
+        val regJson = JSONObject()
+        regJson.put("email",name)
+        regJson.put("password",password)
+        regJson.put("citizenID", citizenID)
+
+        //println(regJson.keys())
+        MyVolleyRequest.getInstance(this@RegisterActivity,this@RegisterActivity)
+            .postRequestWithBody(url,regJson)
+
+//        val url = "http://10.0.2.2:8093/api/signup"
 //        val jsonRequest = object : JsonObjectRequest(
 //            Request.Method.POST, url, regJson,
 //            Response.Listener{
@@ -125,6 +141,6 @@ class RegisterActivity : AppCompatActivity() {
 //
 //        val queue = Volley.newRequestQueue(this)
 //        queue.add(jsonRequest)
-//    }
+    }
 
 }
