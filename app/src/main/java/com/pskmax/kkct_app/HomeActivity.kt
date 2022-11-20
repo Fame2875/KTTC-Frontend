@@ -6,10 +6,10 @@ import android.os.Handler
 import android.os.Looper
 import android.widget.Toast
 import androidx.cardview.widget.CardView
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import com.pskmax.kkct_app.data.Customer
 import com.pskmax.kkct_app.databinding.ActivityHomeBinding
-import java.util.Date
 
 class HomeActivity : AppCompatActivity() {
 
