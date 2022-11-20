@@ -87,13 +87,17 @@ class LogFragment : Fragment(), IVolley {
     }
 
     private fun logData(email: String, token: String){
-        val url = "http://10.0.2.2:8093/api/getTransaction?email=${email}"
+//        val url = "http://10.0.2.2:8093/api/getTransaction?email=${email}"
+//        val url = "http://10.0.2.2:8093/getTransaction?email=${email}"
+        val url = "http://10.0.2.2:8093/api/login?email=poohkung@gmail.com&password=Pooh12345678"
         //test url
         //val url = "https://jsonplaceholder.typicode.com/todos/1"
         println("url: " + url)
         println("token: " + token)
+//        MyVolleyRequest.getInstance(requireContext(),this@LogFragment)
+//            .getRequestWithHeader(url,token)
         MyVolleyRequest.getInstance(requireContext(),this@LogFragment)
-            .getRequestWithHeader(url,token)
+            .getRequest(url)
     }
 
     override fun onResponse(response: String) {
