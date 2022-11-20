@@ -29,10 +29,8 @@ class HomeFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
+//            it.get
         }
-
-
-
     }
 
     override fun onCreateView(
@@ -54,8 +52,8 @@ class HomeFragment : Fragment() {
         // recieve data //
         val data = arguments
         if (data != null) {
-            tranInfoTemp = data.get("usEmail").toString()
-            tranDateTemp = data.get("usToken").toString()
+            tranInfoTemp = data.getString("usEmail")
+            tranDateTemp = data.getString("usToken")
             println("{$tranInfoTemp} Fragment")
             println("{$tranDateTemp} Fragment")
             println("Done Loading")
@@ -77,16 +75,6 @@ class HomeFragment : Fragment() {
 
         unpaidButton!!.setOnClickListener {
             changeFragments(UnpaidFragment())
-        }
-    }
-
-    companion object {
-
-        @JvmStatic
-        fun newInstance(isMyBoolean: Boolean) = HomeFragment().apply {
-            arguments = Bundle().apply {
-                putBoolean("REPLACE WITH A STRING CONSTANT", isMyBoolean)
-            }
         }
     }
 

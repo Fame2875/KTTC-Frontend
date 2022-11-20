@@ -3,6 +3,7 @@ package com.pskmax.kkct_app
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.cardview.widget.CardView
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import com.pskmax.kkct_app.data.Customer
 import com.pskmax.kkct_app.databinding.ActivityHomeBinding
@@ -29,18 +30,29 @@ class HomeActivity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityHomeBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        changeFragment(HomeFragment())
-        supportActionBar?.hide()
 
-        val user = Customer()
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        val bundle = Bundle()
+
         var login_email:String = ""
         var login_pwd:String = ""
         var login_token:String = ""
 
-        //// รับค่าจาก LoginActivity ////
+        super.onCreate(savedInstanceState)
+        binding = ActivityHomeBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        bundle.putString("usEmail",login_email)
+        bundle.putString("usPwd",login_pwd)
+        bundle.putString("usToken",login_token)
+        HomeFragment().arguments = bundle
+        fragmentTransaction.replace(R.id.frame_layout,HomeFragment())
+        fragmentTransaction.commit()
+        supportActionBar?.hide()
+
+        val user = Customer()
+
+        //// รับค่าจาก LoadActivity ////
         intent.extras?.get("ui_email")?.let {
             login_email = it.toString()
         }
@@ -56,36 +68,28 @@ class HomeActivity : AppCompatActivity() {
         println("${user.getUserId()} ${user.getUserEmail()} ${user.getUserPwd()} ${user.getUserCitizenId()} ${user.getUserToken()}")
 
         binding.bottomNav.setOnItemSelectedListener {
-            when(it.itemId){
-                R.id.home -> changeFragment(HomeFragment())
-                R.id.log -> changeFragment(LogFragment())
-                R.id.settings -> changeFragment(SettingsFragment())
+            val fragmentManager = supportFragmentManager
+            val fragmentTransaction = fragmentManager.beginTransaction()
+            val fragment : Fragment
+            val bundle = Bundle()
+            when (it.itemId) {
+                R.id.home -> {
+                    fragment = HomeFragment()
+                    bundle.putString("usEmail",login_email)
+                    bundle.putString("usPwd",login_pwd)
+                    bundle.putString("usToken",login_token)
+                    fragment.arguments = bundle
+                    fragmentTransaction.replace(R.id.frame_layout,fragment)
+                    fragmentTransaction.commit()
+                }
+                R.id.log -> {
+                    changeFragment(LogFragment())
+                }
+                R.id.settings -> {
+                    changeFragment(SettingsFragment())
+                }
             }
             true
         }
-
-
-//        profileCardView = findViewById<CardView>(R.id.profileCardView)
-//        creditCardView = findViewById<CardView>(R.id.creditCardView)
-//        logCardView = findViewById<CardView>(R.id.logCardView)
-//
-//        profileCardView!!.setOnClickListener{
-//            val intent = Intent(this@HomeActivity,ProfileActivity::class.java)
-//            //// ส่งค่าไป ProfileActivity intent.putExtra(key,var) ////
-//            intent.putExtra("user_email",user.getUserEmail())
-//            intent.putExtra("user_citizen_id",user.getUserCitizenId())
-//            startActivity(intent)
-//        }
-//
-//        creditCardView!!.setOnClickListener{
-//            val intent = Intent(this@HomeActivity,CreditActivity::class.java)
-//            startActivity(intent)
-//        }
-//
-//        logCardView!!.setOnClickListener{
-//            val intent = Intent(this@HomeActivity,LogActivity::class.java)
-//            startActivity(intent)
-//        }
-
     }
 }
