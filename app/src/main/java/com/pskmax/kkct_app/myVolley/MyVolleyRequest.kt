@@ -63,9 +63,9 @@ class MyVolleyRequest {
 
     //simple Get method
     fun getRequest(url:String){
-        val getRequest = JsonObjectRequest(Request.Method.GET,url,null,Response.Listener { response->
+        val getRequest = JsonObjectRequest(Request.Method.GET,url,null, { response->
             iVolley!!.onResponse(response.toString())
-        },Response.ErrorListener { error ->
+        }, { error ->
             iVolley!!.onResponse(error.message!!)
         })
         addToRequestQueue(getRequest)

@@ -66,6 +66,7 @@ class HomeActivity : AppCompatActivity() {
         user.fetchUserInfo(getFromBackEnd(login_email,login_pwd),login_token)
         println("${user.getUserId()} ${user.getUserEmail()} ${user.getUserPwd()} ${user.getUserCitizenId()} ${user.getUserToken()}")
 
+        println("HomeAc token: " + login_token)
         binding.bottomNav.setOnItemSelectedListener {
             val fragmentManager = supportFragmentManager
             val fragmentTransaction = fragmentManager.beginTransaction()

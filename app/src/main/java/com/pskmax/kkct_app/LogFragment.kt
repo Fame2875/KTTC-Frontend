@@ -14,8 +14,8 @@ import com.pskmax.kkct_app.myVolley.MyVolleyRequest
 class LogFragment : Fragment(), IVolley {
 
     var logRecyclerView: RecyclerView? = null
-    private var tranEmail: String? = null
-    private var tranToken: String? = null
+    var tranEmail: String? = null
+    var tranToken: String? = null
 
     // Log Data from DB
     private var log = arrayOf(
@@ -45,6 +45,18 @@ class LogFragment : Fragment(), IVolley {
         arguments?.let {
 
         }
+        // recieve data //
+        val data = arguments
+        if (data != null) {
+            tranEmail = data.getString("usEmail")
+            tranToken = data.getString("usToken")
+            println("{$tranEmail} Fragment")
+            println("Done Loading")
+        }
+        else {
+            println("log load failed")
+        }
+        logData(tranEmail.toString(),tranToken.toString())
     }
 
     override fun onCreateView(
@@ -62,18 +74,6 @@ class LogFragment : Fragment(), IVolley {
         val logAdapter = LogRecycleView(log,requireContext())
         logRecyclerView!!.adapter = logAdapter
 
-        // recieve data //
-        val data = arguments
-        if (data != null) {
-            tranEmail = data.getString("usEmail")
-            tranToken = data.getString("usToken")
-            println("{$tranEmail} Fragment")
-            println("Done Loading")
-        }
-        else {
-            println("log load failed")
-        }
-        logData(tranEmail.toString(),tranToken.toString())
     }
 
     companion object {
@@ -87,18 +87,17 @@ class LogFragment : Fragment(), IVolley {
     }
 
     private fun logData(email: String, token: String){
-        val url = "http://10.0.2.2:8093/getRequest/CustomerID?email=${email}"
+        val url = "http://10.0.2.2:8093/api/getTransaction?email=${email}"
         //test url
         //val url = "https://jsonplaceholder.typicode.com/todos/1"
         println("url: " + url)
         println("token: " + token)
         MyVolleyRequest.getInstance(requireContext(),this@LogFragment)
-            .getRequest(url)
+            .getRequestWithHeader(url,token)
     }
 
     override fun onResponse(response: String) {
         TODO("Not yet implemented")
         println(response)
     }
-
 }
