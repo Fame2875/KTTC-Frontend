@@ -14,7 +14,7 @@ class LogFragment : Fragment() {
 
     // Log Data from DB
     private var log = arrayOf(
-        "Log 1 : ไม้โมก",
+        "Log 1 : ไม้โมก\n12345",
         "Log 2 : เป็น",
         "Log 3 : ประธาน",
         "Log 4 : ชมรม",

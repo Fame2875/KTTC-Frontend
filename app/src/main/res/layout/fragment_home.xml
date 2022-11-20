@@ -61,26 +61,57 @@
                 android:orientation="vertical"
                 android:padding="20sp">
 
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Latest transaction"
-                    android:textSize="20sp"></TextView>
+                    android:textSize="20sp"/>
 
-                <TextView
+
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:text="Transactions"
-                    android:textSize="20sp"></TextView>
+                    android:orientation="vertical"
 
-                <TextView
+                    >
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Transactions :"
+                        android:textSize="20sp"/>
+
+                    <TextView
+                        android:id="@+id/tranInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp"/>
+
+                </LinearLayout>
+
+
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="4"
-                    android:text="Date"
-                    android:textSize="20sp"></TextView>
+                    android:orientation="vertical"
+
+                    >
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:text="Date :"
+                        android:textSize="20sp"/>
+                    <TextView
+                        android:id="@+id/tranDateInfo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="20sp"/>
+
+                </LinearLayout>
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -93,7 +124,7 @@
                         android:id="@+id/seeTrans"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="More"></Button>
+                        android:text="More"/>
                 </LinearLayout>
             </LinearLayout>
 
@@ -112,22 +143,22 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Latest unpaid"
-                    android:textSize="20sp"></TextView>
+                    android:text="Latest unpaid :"
+                    android:textSize="20sp"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
-                    android:text="Unpaid"
-                    android:textSize="20sp"></TextView>
+                    android:text="Unpaid:"
+                    android:textSize="20sp"/>
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
-                    android:text="Due date"
-                    android:textSize="20sp"></TextView>
+                    android:text="Due date :"
+                    android:textSize="20sp"/>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -140,7 +171,7 @@
                         android:id="@+id/seeUnpaid"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="More"></Button>
+                        android:text="More"/>
                 </LinearLayout>
             </LinearLayout>
 

@@ -6,51 +6,47 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
-        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@drawable/wave"
+        android:gravity="center"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@drawable/bg">
+        app:layout_constraintTop_toTopOf="parent">
 
 
         <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_marginTop="80dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:text="Welcome,"
-            android:textSize="38dp"
-            android:textStyle="bold"
             android:textColor="@color/white"
-            >
-        </androidx.appcompat.widget.AppCompatTextView>
+            android:textSize="38dp"
+            android:textStyle="bold"></androidx.appcompat.widget.AppCompatTextView>
 
         <androidx.appcompat.widget.AppCompatTextView
-            android:layout_marginBottom="35dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="35dp"
             android:text="Glad to see you!"
-            android:textSize="36dp"
-            android:textStyle="normal"
             android:textColor="@color/white"
-            >
-        </androidx.appcompat.widget.AppCompatTextView>
+            android:textSize="36dp"
+            android:textStyle="normal"></androidx.appcompat.widget.AppCompatTextView>
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginVertical="2dp"
-            android:layout_height="wrap_content"
-            app:boxCornerRadiusBottomStart="20dp"
-            app:boxCornerRadiusBottomEnd="20dp"
-            app:boxCornerRadiusTopStart="20dp"
-            app:boxCornerRadiusTopEnd="20dp"
-            app:boxBackgroundColor="#00FFFFFF"
-            app:startIconDrawable="@drawable/ic_baseline_person_24"
             android:textColorHint="@color/white"
+            app:boxBackgroundColor="#00FFFFFF"
+            app:boxCornerRadiusBottomEnd="20dp"
+            app:boxCornerRadiusBottomStart="20dp"
+            app:boxCornerRadiusTopEnd="20dp"
+            app:boxCornerRadiusTopStart="20dp"
+            app:startIconDrawable="@drawable/ic_baseline_person_24"
 
 
             >
@@ -68,18 +64,18 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="14dp"
             android:layout_marginBottom="20dp"
-            app:passwordToggleEnabled="true"
-            android:layout_height="wrap_content"
-            app:boxCornerRadiusBottomStart="20dp"
-            app:boxCornerRadiusBottomEnd="20dp"
-            app:boxCornerRadiusTopStart="20dp"
-            app:boxCornerRadiusTopEnd="20dp"
-            app:boxBackgroundColor="#00CDCDCD"
-            app:startIconDrawable="@drawable/ic_baseline_lock_24"
             android:textColorHint="@color/white"
+            app:boxBackgroundColor="#00CDCDCD"
+            app:boxCornerRadiusBottomEnd="20dp"
+            app:boxCornerRadiusBottomStart="20dp"
+            app:boxCornerRadiusTopEnd="20dp"
+            app:boxCornerRadiusTopStart="20dp"
+            app:passwordToggleEnabled="true"
+            app:startIconDrawable="@drawable/ic_baseline_lock_24"
 
             >
 
@@ -87,17 +83,17 @@
                 android:id="@+id/editPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword"
                 android:background="@drawable/gradient_field"
-                android:maxLength="15"
-                android:hint="Password" />
+                android:hint="Password"
+                android:inputType="textPassword"
+                android:maxLength="15" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnLogin"
-            android:layout_marginTop="100dp"
             android:layout_width="365dp"
             android:layout_height="50dp"
+            android:layout_marginTop="100dp"
             android:background="@drawable/btn1"
 
             android:text="Login"
@@ -107,19 +103,19 @@
         </androidx.appcompat.widget.AppCompatButton>
 
         <LinearLayout
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="-70dp"
-            android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            >
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="-70dp"
+            android:orientation="horizontal">
+
             <TextView
-                android:layout_marginTop="2dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
                 android:text="Don't have an account?"
-                android:textSize="18dp"
-                android:textColor="@color/white" >
+                android:textColor="@color/white"
+                android:textSize="18dp">
 
             </TextView>
 
@@ -130,10 +126,10 @@
                 android:background="#00FFFFFF"
 
                 android:text="Sign up"
+                android:textAllCaps="false"
                 android:textColor="#FFFFFF"
                 android:textSize="20dp"
-                android:textStyle="bold"
-                android:textAllCaps="false">
+                android:textStyle="bold">
 
             </androidx.appcompat.widget.AppCompatButton>
 

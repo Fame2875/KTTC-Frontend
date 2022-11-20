@@ -8,12 +8,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 
 class HomeFragment : Fragment() {
 
     private var profileButton : ImageView? = null
     private var transactionButton : Button? = null
     private var unpaidButton : Button? = null
+    private lateinit var tranInfoText : TextView
+    private lateinit var tranDateInfoText : TextView
+    var tranInfoTemp :String? = null
+    var tranDateTemp :String? = null
 
     private fun changeFragments(fragment : Fragment){
         val fragmentManager = activity?.supportFragmentManager
@@ -25,6 +30,7 @@ class HomeFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
+//            it.get
         }
     }
 
@@ -41,7 +47,25 @@ class HomeFragment : Fragment() {
         profileButton = view.findViewById(R.id.profileUser)
         transactionButton = view.findViewById(R.id.seeTrans)
         unpaidButton = view.findViewById(R.id.seeUnpaid)
+        tranInfoText = view.findViewById(R.id.tranInfo)
+        tranDateInfoText = view.findViewById(R.id.tranDateInfo)
 
+        // recieve data //
+        val data = arguments
+        if (data != null) {
+            tranInfoTemp = data.getString("usEmail")
+            tranDateTemp = data.getString("usToken")
+            println("{$tranInfoTemp} Fragment")
+            println("{$tranDateTemp} Fragment")
+            println("Done Loading")
+        }
+        else {
+            println("load failed")
+        }
+
+        tranInfoText.text = tranInfoTemp
+        tranDateInfoText.text = tranDateTemp
+        ////////////////////////
         profileButton!!.setOnClickListener {
             changeFragments(ProfileFragment())
         }
@@ -52,16 +76,6 @@ class HomeFragment : Fragment() {
 
         unpaidButton!!.setOnClickListener {
             changeFragments(UnpaidFragment())
-        }
-    }
-
-    companion object {
-
-        @JvmStatic
-        fun newInstance(isMyBoolean: Boolean) = HomeFragment().apply {
-            arguments = Bundle().apply {
-                putBoolean("REPLACE WITH A STRING CONSTANT", isMyBoolean)
-            }
         }
     }
 

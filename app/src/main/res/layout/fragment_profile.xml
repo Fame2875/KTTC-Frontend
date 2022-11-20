@@ -67,7 +67,7 @@
                     android:id="@+id/profileImage"
                     android:layout_width="125dp"
                     android:layout_height="125dp"
-                    tools:src="@tools:sample/avatars" />
+                    tools:src="@tools:sample/avatars[0]" />
             </LinearLayout>
 
             <LinearLayout
@@ -121,7 +121,6 @@
                     android:id="@+id/emailValue"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="test@hotmail.com"
                     android:textColor="#FFFFFF" />
             </LinearLayout>
 
@@ -146,7 +145,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="1409903011111"
                     android:textColor="#FFFFFF" />
             </LinearLayout>
 

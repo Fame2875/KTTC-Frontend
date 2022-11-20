@@ -19,7 +19,7 @@ class MyVolleyRequest {
     private var iVolley:IVolley?=null
     var imageLoader:ImageLoader?=null
 
-    val requestQueue:RequestQueue
+    private val requestQueue:RequestQueue
         get(){
             if (mRequestQueue == null){
                 mRequestQueue = Volley.newRequestQueue(context!!.applicationContext)}

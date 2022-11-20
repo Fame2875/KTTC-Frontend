@@ -2,6 +2,9 @@ package com.pskmax.kkct_app
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.widget.Toast
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import com.pskmax.kkct_app.data.Customer
@@ -11,10 +14,6 @@ import java.util.Date
 class HomeActivity : AppCompatActivity() {
 
     private lateinit var binding : ActivityHomeBinding
-
-    var profileCardView: CardView? = null
-    var creditCardView: CardView? = null
-    var logCardView: CardView? = null
 
     private fun getFromBackEnd(email:String,pwd:String): MutableList<String>{
         //////// id,email,pwd,token ///////
@@ -30,31 +29,29 @@ class HomeActivity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = ActivityHomeBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        changeFragment(HomeFragment())
-        supportActionBar?.hide()
 
-        /////////User Datas & Token/////////
-        val user = Customer()
+        val fragmentManager = supportFragmentManager
+        val fragmentTransaction = fragmentManager.beginTransaction()
+        val bundle = Bundle()
+
         var login_email:String = ""
         var login_pwd:String = ""
         var login_token:String = ""
 
-        /////////History Transaction/////////
-        var id : String? = null
-        var customerID : String? = null
-        var dueDate : Date? = null
-        var unpaid : Double? = null
-        var entrepreneurID : String? = null
-        var transactionInfo : Double? = null
-        var transactionDate : Date? = null
-        /////////Credit Calculation/////////
-        var creditScore : Float? = null
-        var recommend : String? = null
+        super.onCreate(savedInstanceState)
+        binding = ActivityHomeBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        bundle.putString("usEmail",login_email)
+        bundle.putString("usPwd",login_pwd)
+        bundle.putString("usToken",login_token)
+        HomeFragment().arguments = bundle
+        fragmentTransaction.replace(R.id.frame_layout,HomeFragment())
+        fragmentTransaction.commit()
+        supportActionBar?.hide()
 
-        //// รับค่าจาก LoginActivity ////
+        val user = Customer()
+
+        //// รับค่าจาก LoadActivity ////
         intent.extras?.get("ui_email")?.let {
             login_email = it.toString()
         }
@@ -70,13 +67,28 @@ class HomeActivity : AppCompatActivity() {
         println("${user.getUserId()} ${user.getUserEmail()} ${user.getUserPwd()} ${user.getUserCitizenId()} ${user.getUserToken()}")
 
         binding.bottomNav.setOnItemSelectedListener {
-            when(it.itemId){
-                R.id.home -> changeFragment(HomeFragment())
-                R.id.log -> changeFragment(LogFragment())
-                R.id.settings -> changeFragment(SettingsFragment())
+            val fragmentManager = supportFragmentManager
+            val fragmentTransaction = fragmentManager.beginTransaction()
+            val fragment : Fragment
+            val bundle = Bundle()
+            when (it.itemId) {
+                R.id.home -> {
+                    fragment = HomeFragment()
+                    bundle.putString("usEmail",login_email)
+                    bundle.putString("usPwd",login_pwd)
+                    bundle.putString("usToken",login_token)
+                    fragment.arguments = bundle
+                    fragmentTransaction.replace(R.id.frame_layout,fragment)
+                    fragmentTransaction.commit()
+                }
+                R.id.log -> {
+                    changeFragment(LogFragment())
+                }
+                R.id.settings -> {
+                    changeFragment(SettingsFragment())
+                }
             }
             true
         }
-
     }
 }

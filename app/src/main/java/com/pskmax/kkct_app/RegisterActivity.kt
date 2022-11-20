@@ -1,25 +1,23 @@
 package com.pskmax.kkct_app
 
-import android.content.Intent
-import android.os.Bundle
-import android.util.Log
-import android.widget.Button
-import android.widget.EditText
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
-import com.android.volley.Request
-import com.android.volley.Response
-import com.android.volley.toolbox.JsonObjectRequest
-import com.android.volley.toolbox.Volley
 //import com.android.volley.Request
 //import com.android.volley.Response
 //import com.android.volley.toolbox.JsonObjectRequest
 //import com.android.volley.toolbox.StringRequest
 //import com.android.volley.toolbox.Volley
+import android.content.Intent
+import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.pskmax.kkct_app.data.Register
 import com.pskmax.kkct_app.myVolley.IVolley
 import com.pskmax.kkct_app.myVolley.MyVolleyRequest
 import org.json.JSONObject
+
 
 class RegisterActivity : AppCompatActivity(), IVolley {
 
@@ -50,6 +48,20 @@ class RegisterActivity : AppCompatActivity(), IVolley {
         return EMAIL_REGEX.toRegex().matches(email);
     }
 
+    //กันไม่ให้ย้อนกลับ
+    var doubleBackToExitPressedOnce = false
+    override fun onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed()
+            moveTaskToBack(true)
+            finishAffinity()
+        }
+        doubleBackToExitPressedOnce = true
+        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show()
+        Handler(Looper.getMainLooper()).postDelayed(Runnable {
+            doubleBackToExitPressedOnce = false
+        }, 2000)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -65,7 +77,7 @@ class RegisterActivity : AppCompatActivity(), IVolley {
 
         val regScreen = Register()
         btnRegister!!.setOnClickListener{
-            //ของโอ๊ต
+            //ส่งค่าไป Back
             register00((editEmail?.text).toString(),(editPassword?.text).toString(), (editId?.text).toString())
 
             if (!isEmailValid((editEmail?.text).toString())){
@@ -96,8 +108,6 @@ class RegisterActivity : AppCompatActivity(), IVolley {
                 // ลบ Stack ของ Intent///////////////
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
-                this.finish();
-                /////////////////////////////////////
             }
         }
 
@@ -113,7 +123,6 @@ class RegisterActivity : AppCompatActivity(), IVolley {
     //ของโอ๊ต
     private fun register00(name: String,password : String,citizenID:String){
 
-
         val regJson = JSONObject()
         regJson.put("email",name)
         regJson.put("password",password)
@@ -122,25 +131,6 @@ class RegisterActivity : AppCompatActivity(), IVolley {
         //println(regJson.keys())
         MyVolleyRequest.getInstance(this@RegisterActivity,this@RegisterActivity)
             .postRequestWithBody(url,regJson)
-
-//        val url = "http://10.0.2.2:8093/api/signup"
-//        val jsonRequest = object : JsonObjectRequest(
-//            Request.Method.POST, url, regJson,
-//            Response.Listener{
-//                response -> Log.d("Respond",response.toString())
-//            },
-//            Response.ErrorListener{ error ->
-//                Log.d("Response",error.toString())
-//                return@ErrorListener
-//            }
-//        ){
-//            override fun getBodyContentType(): String {
-//                return "application/json"
-//            }
-//          }
-//
-//        val queue = Volley.newRequestQueue(this)
-//        queue.add(jsonRequest)
     }
 
 }

@@ -2,90 +2,77 @@ package com.pskmax.kkct_app
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.widget.Button
 import android.widget.EditText
-import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import com.google.android.material.textfield.TextInputEditText
-import com.pskmax.kkct_app.data.Login
 import com.pskmax.kkct_app.myVolley.IVolley
 import com.pskmax.kkct_app.myVolley.MyVolleyRequest
 import org.json.JSONObject
 
 class LoginActivity : AppCompatActivity(),IVolley{
 
-    var registerKKCT: TextView? = null
-    var loginKKCT: TextView? = null
     var editEmail: EditText? = null
     var editPassword: EditText? = null
     var btnLogin: Button? = null
     var btnToRegister: Button? = null
     var res : String? = null
-    private val EMAIL_REGEX = "^[A-Za-z](.*)([@]{1})(.{1,})(\\.)(.{1,})"
-    private fun isEmailValid(email: String): Boolean {
-        return EMAIL_REGEX.toRegex().matches(email);
+
+    //กันไม่ให้ย้อนกลับ
+    var doubleBackToExitPressedOnce = false
+    override fun onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed()
+            moveTaskToBack(true)
+            finishAffinity()
+        }
+        doubleBackToExitPressedOnce = true
+        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show()
+        Handler(Looper.getMainLooper()).postDelayed(Runnable {
+            doubleBackToExitPressedOnce = false
+        }, 2000)
     }
+
+    // รับ token
     override fun onResponse(response: String) {
         println(response)
          //JSONObject(response)
         res = JSONObject(response).getString("access_token")
         println(res)
     }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_loginv2)
         supportActionBar?.hide()
-        // ทดสอบ Animation
-        //val test_anim = AnimationUtils.loadAnimation(this,R.anim.fade_in);
-        //val title = findViewById(R.id.loginKKCT) as TextView
-        //title.startAnimation(test_anim)
-        //////////////////////////////////
 
-        //loginKKCT = findViewById<TextView>(R.id.loginKKCT)
         editEmail = findViewById<TextInputEditText>(R.id.editEmail)
         editPassword = findViewById<TextInputEditText>(R.id.editPassword)
         btnToRegister = findViewById<AppCompatButton>(R.id.btnToRegister)
         btnLogin = findViewById<AppCompatButton>(R.id.btnLogin)
 
-        val loginScreen = Login()
-        val dummy_token:String = "12345@a1234"
-
-        // temporary correct email and password
-        loginScreen.setDBEmail("test@hotmail.com")
-        loginScreen.setDBPwd("12345")
-
         btnLogin!!.setOnClickListener{
+            // ส่งค่าไป Back
             customerLogin((editEmail?.text).toString(),(editPassword?.text).toString())
-            // match email and password
-            loginScreen.set_Email_UI((editEmail?.text).toString())
-            loginScreen.setUiPwd((editPassword?.text).toString())
-            println(loginScreen.get_Email_UI())
-            println(loginScreen.getUiPwd())
-            if (!isEmailValid((editEmail?.text).toString())){
-                println("Your Email is not correct")
-            }
-            else if(!loginScreen.isRegister((editEmail?.text).toString())) {
-                println("You are dont have account yet")
-            }
-            else{
-                if (!loginScreen.checkForLogin() && (res == null)){
-                    println("You fucked up")
-                }
-            // if email and password are correct
-                else {
-//                    val intent = Intent(this@LoginActivity, HomeActivity::class.java)
+            Handler().postDelayed({
+                //wait for token
+                if(res != null){
                     val intent = Intent(this@LoginActivity, LoadActivity::class.java)
-                    println("Nice work")
-                    loginScreen.generateToken()
-                    // pass ค่า user_email , user_password, token -> HomeActivity //
                     intent.putExtra("ui_email",(editEmail?.text).toString())
-                    intent.putExtra("ui_pwd",(editPassword?.text).toString())
-                    intent.putExtra("token",dummy_token)
-                    //
+                        .putExtra("ui_pwd",(editPassword?.text).toString())
+                        .putExtra("token",res)
+//                    println((editEmail?.text).toString())
+//                    println((editPassword?.text).toString())
                     startActivity(intent)
                 }
-            }
+                else{
+                    Toast.makeText(applicationContext,"Your email or password was incorrect", Toast.LENGTH_SHORT).show()
+                }
+            }, 1000)
         }
 
         btnToRegister!!.setOnClickListener{
