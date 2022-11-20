@@ -82,7 +82,12 @@ class HomeActivity : AppCompatActivity() {
                     fragmentTransaction.commit()
                 }
                 R.id.log -> {
-                    changeFragment(LogFragment())
+                    fragment = LogFragment()
+                    bundle.putString("usEmail",login_email)
+                    bundle.putString("usToken",login_token)
+                    fragment.arguments = bundle
+                    fragmentTransaction.replace(R.id.frame_layout,fragment)
+                    fragmentTransaction.commit()
                 }
                 R.id.settings -> {
                     changeFragment(SettingsFragment())

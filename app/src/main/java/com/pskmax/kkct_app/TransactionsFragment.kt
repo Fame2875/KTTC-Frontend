@@ -7,8 +7,10 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.pskmax.kkct_app.myVolley.IVolley
+import com.pskmax.kkct_app.myVolley.MyVolleyRequest
 
-class TransactionsFragment : Fragment() {
+class TransactionsFragment : Fragment(){
 
     var logRecyclerView: RecyclerView? = null
 

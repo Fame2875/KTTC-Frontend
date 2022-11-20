@@ -5,12 +5,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.pskmax.kkct_app.myVolley.IVolley
+import com.pskmax.kkct_app.myVolley.MyVolleyRequest
 
-class LogFragment : Fragment() {
+class LogFragment : Fragment(), IVolley {
 
     var logRecyclerView: RecyclerView? = null
+    private var tranEmail: String? = null
+    private var tranToken: String? = null
 
     // Log Data from DB
     private var log = arrayOf(
@@ -56,6 +61,19 @@ class LogFragment : Fragment() {
         logRecyclerView!!.layoutManager = LinearLayoutManager(requireContext())
         val logAdapter = LogRecycleView(log,requireContext())
         logRecyclerView!!.adapter = logAdapter
+
+        // recieve data //
+        val data = arguments
+        if (data != null) {
+            tranEmail = data.getString("usEmail")
+            tranToken = data.getString("usToken")
+            println("{$tranEmail} Fragment")
+            println("Done Loading")
+        }
+        else {
+            println("log load failed")
+        }
+        logData(tranEmail.toString(),tranToken.toString())
     }
 
     companion object {
@@ -66,6 +84,21 @@ class LogFragment : Fragment() {
                 putBoolean("REPLACE WITH A STRING CONSTANT", isMyBoolean)
             }
         }
+    }
+
+    private fun logData(email: String, token: String){
+        val url = "http://10.0.2.2:8093/getRequest/CustomerID?email=${email}"
+        //test url
+        //val url = "https://jsonplaceholder.typicode.com/todos/1"
+        println("url: " + url)
+        println("token: " + token)
+        MyVolleyRequest.getInstance(requireContext(),this@LogFragment)
+            .getRequest(url)
+    }
+
+    override fun onResponse(response: String) {
+        TODO("Not yet implemented")
+        println(response)
     }
 
 }
