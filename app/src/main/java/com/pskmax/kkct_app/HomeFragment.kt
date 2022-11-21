@@ -76,7 +76,6 @@ class HomeFragment : Fragment() {
             val fragment = ProfileFragment()
             val bundle = Bundle()
             bundle.putString("usEmail",tranEmail)
-            bundle.putString("usCID",tranCID)
             fragment.arguments = bundle
             fragmentTransaction?.replace(R.id.frame_layout,fragment)
             fragmentTransaction?.commit()

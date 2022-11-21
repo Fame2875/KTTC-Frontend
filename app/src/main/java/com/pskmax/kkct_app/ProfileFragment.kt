@@ -2,6 +2,7 @@ package com.pskmax.kkct_app
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -24,13 +25,15 @@ class ProfileFragment : Fragment() {
 
     private var email : String? = null
     private var cid : String? = null
+    var tranToken: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             email = it.getString("usEmail")
-            cid = it.getString("usCID")
+            tranToken = it.getString("usToken")
         }
+        loadCredit(email.toString(),tranToken.toString())
     }
 
     override fun onCreateView(
@@ -39,6 +42,10 @@ class ProfileFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         _binding = FragmentProfileBinding.inflate(inflater,container,false)
+        Handler().postDelayed({
+            binding.emailValue.text = email
+            binding.citizenIdValue.text = cid
+        }, 500)
         println("{$email} Profile")
         println("{$cid} Profile")
         binding.emailValue.text = email
@@ -54,15 +61,14 @@ class ProfileFragment : Fragment() {
         println("url: " + url)
         println("email: " + email)
         println("token: " + token)
-
         val jsonRequest = StringRequest(
-            Request.Method.POST, url,
+            Request.Method.GET, url,
             Response.Listener{
                     response ->
                 Log.d("Respond",response.toString())
-//                this.creditScore = JSONObject(response).getString("creditScore")
+                this.cid = JSONObject(response).getString("citizenID")
 //                this.recommend = JSONObject(response).getString("recommend")
-//                println("data = $creditScore")
+                println("data = $cid")
             },
             Response.ErrorListener{ error ->
                 Log.d("Response",error.toString())
