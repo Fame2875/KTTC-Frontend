@@ -103,7 +103,7 @@ class HomeFragment : Fragment() {
                 this.recommend = creditCalculation.getString("recommend")
                 var test = getUnpaid(historyTransaction[length-1].toString())
                 this.unpaid = test[6].replace("}","")
-                this.dueDate = test[5]
+                this.dueDate = test[2]
                 println("test = $test")
                 println("credit score = $creditScore")
                 println("recommend = $recommend")
