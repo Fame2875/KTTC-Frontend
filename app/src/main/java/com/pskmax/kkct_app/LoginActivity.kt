@@ -21,6 +21,7 @@ class LoginActivity : AppCompatActivity(),IVolley{
     var btnLogin: Button? = null
     var btnToRegister: Button? = null
     var res : String? = null
+    var resetToken : Boolean = false
 
     //กันไม่ให้ย้อนกลับ
     var doubleBackToExitPressedOnce = false
@@ -39,6 +40,11 @@ class LoginActivity : AppCompatActivity(),IVolley{
 
     // รับ token
     override fun onResponse(response: String) {
+        if (resetToken){
+            res = null
+            resetToken = false
+            onResponse(response)
+        }
         println(response)
          //JSONObject(response)
         res = JSONObject(response).getString("access_token")
@@ -50,6 +56,11 @@ class LoginActivity : AppCompatActivity(),IVolley{
         setContentView(R.layout.activity_loginv2)
         supportActionBar?.hide()
 
+        //// รับค่าจาก Logout ////
+        intent.extras?.get("resetToken")?.let {
+            resetToken = it as Boolean
+            println("Token reset : $resetToken")
+        }
         editEmail = findViewById<TextInputEditText>(R.id.editEmail)
         editPassword = findViewById<TextInputEditText>(R.id.editPassword)
         btnToRegister = findViewById<AppCompatButton>(R.id.btnToRegister)

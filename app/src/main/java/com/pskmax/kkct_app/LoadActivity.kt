@@ -37,6 +37,7 @@ class LoadActivity : AppCompatActivity(){
         intent.putExtra("token",login_token)
         Handler().postDelayed({
             startActivity(intent)
+            finish()
         }, 1000)
     }
 }

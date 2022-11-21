@@ -51,7 +51,10 @@ class ProfileFragment : Fragment() {
         binding.emailValue.text = email
         binding.citizenIdValue.text = cid
         binding.logoutBtn.setOnClickListener {
-
+            val intent = Intent(context, LoginActivity::class.java)
+            intent.putExtra("resetToken",true)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
         }
         return binding.root
     }

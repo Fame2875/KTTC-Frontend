@@ -82,7 +82,15 @@ class HomeFragment : Fragment() {
         }
 
         binding.seeUnpaid.setOnClickListener {
-            changeFragments(UnpaidFragment())
+            val fragmentManager = activity?.supportFragmentManager
+            val fragmentTransaction = fragmentManager?.beginTransaction()
+            val fragment = LogFragment()
+            val bundle = Bundle()
+            bundle.putString("usEmail",tranEmail)
+            bundle.putString("usToken",tranToken)
+            fragment.arguments = bundle
+            fragmentTransaction?.replace(R.id.frame_layout,fragment)
+            fragmentTransaction?.commit()
         }
         return binding.root
     }
