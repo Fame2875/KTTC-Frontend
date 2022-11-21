@@ -9,31 +9,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="@drawable/wave">
+        android:background="@drawable/wave"
+        android:orientation="vertical">
 
 
         <FrameLayout
             android:id="@+id/frame_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-
-
-            >
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:background="@drawable/bg2"
-                >
-
-
-
-
-
-            </LinearLayout>
-
+            android:layout_weight="1">
         </FrameLayout>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -42,126 +26,126 @@
             android:layout_height="wrap_content"
             android:background="#E0E0E5"
             app:menu="@menu/bottom_navigator">
-                </com.google.android.material.bottomnavigation.BottomNavigationView>
+        </com.google.android.material.bottomnavigation.BottomNavigationView>
         <!--        <TextView-->
-<!--            android:id="@+id/homeKKCT"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_marginTop="30dp"-->
-<!--            android:fontFamily="sans-serif-medium"-->
-<!--            android:text="KKCT"-->
-<!--            android:textColor="#F3FFAB"-->
-<!--            android:textSize="60sp"-->
-<!--            android:textAlignment="viewEnd"-->
-<!--            android:paddingStart="0dp"-->
-<!--            android:paddingEnd="25dp"-->
-<!--            />-->
+        <!--            android:id="@+id/homeKKCT"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_marginTop="30dp"-->
+        <!--            android:fontFamily="sans-serif-medium"-->
+        <!--            android:text="KKCT"-->
+        <!--            android:textColor="#F3FFAB"-->
+        <!--            android:textSize="60sp"-->
+        <!--            android:textAlignment="viewEnd"-->
+        <!--            android:paddingStart="0dp"-->
+        <!--            android:paddingEnd="25dp"-->
+        <!--            />-->
 
-<!--        <LinearLayout-->
-<!--            android:id="@+id/logLayout"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:background="#FDF9D4"-->
-<!--            android:orientation="vertical"-->
-<!--            android:layout_marginHorizontal="10dp"-->
-<!--            android:layout_marginVertical="10dp"-->
-<!--            android:gravity="center"-->
-<!--            >-->
+        <!--        <LinearLayout-->
+        <!--            android:id="@+id/logLayout"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="match_parent"-->
+        <!--            android:background="#FDF9D4"-->
+        <!--            android:orientation="vertical"-->
+        <!--            android:layout_marginHorizontal="10dp"-->
+        <!--            android:layout_marginVertical="10dp"-->
+        <!--            android:gravity="center"-->
+        <!--            >-->
 
-<!--            <androidx.cardview.widget.CardView-->
-<!--                android:id="@+id/profileCardView"-->
-<!--                android:layout_width="120dp"-->
-<!--                android:layout_height="140dp"-->
-<!--                app:cardBackgroundColor="#00FFFFFF"-->
-<!--                app:cardElevation="0dp"-->
-<!--                >-->
+        <!--            <androidx.cardview.widget.CardView-->
+        <!--                android:id="@+id/profileCardView"-->
+        <!--                android:layout_width="120dp"-->
+        <!--                android:layout_height="140dp"-->
+        <!--                app:cardBackgroundColor="#00FFFFFF"-->
+        <!--                app:cardElevation="0dp"-->
+        <!--                >-->
 
-<!--                <LinearLayout-->
-<!--                    android:id="@+id/toProfileLayout"-->
-<!--                    android:layout_width="110dp"-->
-<!--                    android:layout_height="130dp"-->
-<!--                    android:layout_margin="5dp"-->
-<!--                    android:orientation="vertical">-->
+        <!--                <LinearLayout-->
+        <!--                    android:id="@+id/toProfileLayout"-->
+        <!--                    android:layout_width="110dp"-->
+        <!--                    android:layout_height="130dp"-->
+        <!--                    android:layout_margin="5dp"-->
+        <!--                    android:orientation="vertical">-->
 
-<!--                    <ImageView-->
-<!--                        android:id="@+id/profileIcon"-->
-<!--                        android:layout_width="110dp"-->
-<!--                        android:layout_height="110dp"-->
-<!--                        app:srcCompat="@drawable/profile" />-->
+        <!--                    <ImageView-->
+        <!--                        android:id="@+id/profileIcon"-->
+        <!--                        android:layout_width="110dp"-->
+        <!--                        android:layout_height="110dp"-->
+        <!--                        app:srcCompat="@drawable/profile" />-->
 
-<!--                    <TextView-->
-<!--                        android:id="@+id/profileText"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="match_parent"-->
-<!--                        android:text="My Profile"-->
-<!--                        android:textAlignment="center" />-->
+        <!--                    <TextView-->
+        <!--                        android:id="@+id/profileText"-->
+        <!--                        android:layout_width="match_parent"-->
+        <!--                        android:layout_height="match_parent"-->
+        <!--                        android:text="My Profile"-->
+        <!--                        android:textAlignment="center" />-->
 
-<!--                </LinearLayout>-->
-<!--            </androidx.cardview.widget.CardView>-->
+        <!--                </LinearLayout>-->
+        <!--            </androidx.cardview.widget.CardView>-->
 
-<!--            <androidx.cardview.widget.CardView-->
-<!--                android:id="@+id/creditCardView"-->
-<!--                android:layout_width="120dp"-->
-<!--                android:layout_height="140dp"-->
-<!--                app:cardBackgroundColor="#00FFFFFF"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/profileCardView"-->
-<!--                app:cardElevation="0dp"-->
-<!--                >-->
+        <!--            <androidx.cardview.widget.CardView-->
+        <!--                android:id="@+id/creditCardView"-->
+        <!--                android:layout_width="120dp"-->
+        <!--                android:layout_height="140dp"-->
+        <!--                app:cardBackgroundColor="#00FFFFFF"-->
+        <!--                app:layout_constraintTop_toBottomOf="@+id/profileCardView"-->
+        <!--                app:cardElevation="0dp"-->
+        <!--                >-->
 
-<!--                <LinearLayout-->
-<!--                    android:id="@+id/toCreditLayout"-->
-<!--                    android:layout_width="110dp"-->
-<!--                    android:layout_height="130dp"-->
-<!--                    android:layout_margin="5dp"-->
-<!--                    android:orientation="vertical">-->
+        <!--                <LinearLayout-->
+        <!--                    android:id="@+id/toCreditLayout"-->
+        <!--                    android:layout_width="110dp"-->
+        <!--                    android:layout_height="130dp"-->
+        <!--                    android:layout_margin="5dp"-->
+        <!--                    android:orientation="vertical">-->
 
-<!--                    <ImageView-->
-<!--                        android:id="@+id/creditIcon"-->
-<!--                        android:layout_width="110dp"-->
-<!--                        android:layout_height="110dp"-->
-<!--                        app:srcCompat="@drawable/checkcredit" />-->
+        <!--                    <ImageView-->
+        <!--                        android:id="@+id/creditIcon"-->
+        <!--                        android:layout_width="110dp"-->
+        <!--                        android:layout_height="110dp"-->
+        <!--                        app:srcCompat="@drawable/checkcredit" />-->
 
-<!--                    <TextView-->
-<!--                        android:id="@+id/creditText"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="match_parent"-->
-<!--                        android:text="Check your credit"-->
-<!--                        android:textAlignment="center" />-->
-<!--                </LinearLayout>-->
-<!--            </androidx.cardview.widget.CardView>-->
+        <!--                    <TextView-->
+        <!--                        android:id="@+id/creditText"-->
+        <!--                        android:layout_width="match_parent"-->
+        <!--                        android:layout_height="match_parent"-->
+        <!--                        android:text="Check your credit"-->
+        <!--                        android:textAlignment="center" />-->
+        <!--                </LinearLayout>-->
+        <!--            </androidx.cardview.widget.CardView>-->
 
-<!--            <androidx.cardview.widget.CardView-->
-<!--                android:id="@+id/logCardView"-->
-<!--                android:layout_width="120dp"-->
-<!--                android:layout_height="140dp"-->
-<!--                app:cardBackgroundColor="#00FFFFFF"-->
-<!--                app:layout_constraintTop_toBottomOf="@+id/creditCardView"-->
-<!--                app:cardElevation="0dp"-->
-<!--                >-->
+        <!--            <androidx.cardview.widget.CardView-->
+        <!--                android:id="@+id/logCardView"-->
+        <!--                android:layout_width="120dp"-->
+        <!--                android:layout_height="140dp"-->
+        <!--                app:cardBackgroundColor="#00FFFFFF"-->
+        <!--                app:layout_constraintTop_toBottomOf="@+id/creditCardView"-->
+        <!--                app:cardElevation="0dp"-->
+        <!--                >-->
 
-<!--                <LinearLayout-->
-<!--                    android:id="@+id/toLogLayout"-->
-<!--                    android:layout_width="110dp"-->
-<!--                    android:layout_height="130dp"-->
-<!--                    android:layout_margin="5dp"-->
-<!--                    android:orientation="vertical">-->
+        <!--                <LinearLayout-->
+        <!--                    android:id="@+id/toLogLayout"-->
+        <!--                    android:layout_width="110dp"-->
+        <!--                    android:layout_height="130dp"-->
+        <!--                    android:layout_margin="5dp"-->
+        <!--                    android:orientation="vertical">-->
 
-<!--                    <ImageView-->
-<!--                        android:id="@+id/logIcon"-->
-<!--                        android:layout_width="110dp"-->
-<!--                        android:layout_height="110dp"-->
-<!--                        app:srcCompat="@drawable/history" />-->
+        <!--                    <ImageView-->
+        <!--                        android:id="@+id/logIcon"-->
+        <!--                        android:layout_width="110dp"-->
+        <!--                        android:layout_height="110dp"-->
+        <!--                        app:srcCompat="@drawable/history" />-->
 
-<!--                    <TextView-->
-<!--                        android:id="@+id/logText"-->
-<!--                        android:layout_width="match_parent"-->
-<!--                        android:layout_height="match_parent"-->
-<!--                        android:text="Log"-->
-<!--                        android:textAlignment="center" />-->
-<!--                </LinearLayout>-->
-<!--            </androidx.cardview.widget.CardView>-->
+        <!--                    <TextView-->
+        <!--                        android:id="@+id/logText"-->
+        <!--                        android:layout_width="match_parent"-->
+        <!--                        android:layout_height="match_parent"-->
+        <!--                        android:text="Log"-->
+        <!--                        android:textAlignment="center" />-->
+        <!--                </LinearLayout>-->
+        <!--            </androidx.cardview.widget.CardView>-->
 
-<!--        </LinearLayout>-->
+        <!--        </LinearLayout>-->
 
     </LinearLayout>
 

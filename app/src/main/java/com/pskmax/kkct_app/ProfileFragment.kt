@@ -9,37 +9,38 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatButton
+import com.pskmax.kkct_app.databinding.FragmentProfileBinding
 
 class ProfileFragment : Fragment() {
 
-    private lateinit var emailValue: TextView
-    private lateinit var citizenIdValue: TextView
-    private var btnLogout: Button? = null
+    private var _binding : FragmentProfileBinding? = null
+    private val binding get() = _binding!!
+
+    private var email : String? = null
+    private var cid : String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
+            email = it.getString("usEmail")
+            cid = it.getString("usCID")
         }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        emailValue = view.findViewById<TextView>(R.id.emailValue)
-        citizenIdValue = view.findViewById<TextView>(R.id.citizenIdValue)
-        btnLogout = view.findViewById<AppCompatButton>(R.id.logoutBtn)
-
-        btnLogout!!.setOnClickListener{
+        _binding = FragmentProfileBinding.inflate(inflater,container,false)
+        println("{$email} Profile")
+        println("{$cid} Profile")
+        binding.emailValue.text = email
+        binding.citizenIdValue.text = cid
+        binding.logoutBtn.setOnClickListener {
 
         }
+        return binding.root
     }
 
 }
