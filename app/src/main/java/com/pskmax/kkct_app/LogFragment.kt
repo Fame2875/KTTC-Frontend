@@ -1,11 +1,14 @@
 package com.pskmax.kkct_app
 
 
+import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -13,37 +16,24 @@ import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.pskmax.kkct_app.myVolley.IVolley
-import com.pskmax.kkct_app.myVolley.MyVolleyRequest
 import com.android.volley.Request
+import com.pskmax.kkct_app.databinding.FragmentHomeBinding
+import com.pskmax.kkct_app.databinding.FragmentLogBinding
 
 
 class LogFragment : Fragment(), IVolley {
 
+    private var _binding : FragmentLogBinding? = null
+    private val binding get() = _binding!!
+
     var logRecyclerView: RecyclerView? = null
     var tranEmail: String? = null
     var tranToken: String? = null
+    var getRes : String = ""
 
     // Log Data from DB
     private var log = arrayOf(
-        "Log 1 : ไม้โมก\n12345",
-        "Log 2 : เป็น",
-        "Log 3 : ประธาน",
-        "Log 4 : ชมรม",
-        "Log 5 : คน",
-        "Log 6 : ชอบ",
-        "Log 7 : หี",
-        "Log 8 : ที่",
-        "Log 9 : มี",
-        "Log 10 : สมาชิก",
-        "Log 11 : ใน",
-        "Log 12 : ชมรม",
-        "Log 13 : คือ",
-        "Log 14 : พวก",
-        "Log 15 : มึง",
-        "Log 16 : ที่",
-        "Log 17 : อ่าน",
-        "Log 18 : นี่",
-        "Log 19 : แหละ",
+        getRes
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -61,18 +51,6 @@ class LogFragment : Fragment(), IVolley {
             }
             logData(tranEmail.toString(),tranToken.toString())
         }
-//        // recieve data //
-//        val data = arguments
-//        if (data != null) {
-//            tranEmail = data.getString("usEmail")
-//            tranToken = data.getString("usToken")
-//            println("{$tranEmail} Fragment")
-//            println("Done Loading")
-//        }
-//        else {
-//            println("log load failed")
-//        }
-//        logData(tranEmail.toString(),tranToken.toString())
     }
 
     override fun onCreateView(
@@ -80,16 +58,20 @@ class LogFragment : Fragment(), IVolley {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_log, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        logRecyclerView = view.findViewById<RecyclerView>(R.id.logRecyclerView)
+        _binding = FragmentLogBinding.inflate(inflater,container,false)
+        logRecyclerView = binding.logRecyclerView
         logRecyclerView!!.layoutManager = LinearLayoutManager(requireContext())
-        val logAdapter = LogRecycleView(log,requireContext())
-        logRecyclerView!!.adapter = logAdapter
 
+        Handler().postDelayed({
+            // Log Data from DB
+            var log = arrayOf(
+                getRes
+            )
+            val logAdapter = LogRecycleView(log,requireContext())
+            logRecyclerView!!.adapter = logAdapter
+        }, 1000)
+
+        return binding.root
     }
 
     private fun logData(email: String, token: String){
@@ -100,19 +82,14 @@ class LogFragment : Fragment(), IVolley {
         //val url = "https://jsonplaceholder.typicode.com/todos/1"
         println("url: " + url)
         println("token: " + token)
-//        MyVolleyRequest.getInstance(requireContext(),this@LogFragment)
-//            .getRequestWithHeader(url,token)
-//        MyVolleyRequest.getInstance(requireContext(),this@LogFragment)
-//            .getRequest(url)
-//        val exception = assertEquals(InvocationTargetException::class.java, exception.getCause().getClass())
-
-        //val queue = Volley.newRequestQueue(requireContext())
-
 
         val jsonRequest = StringRequest(
             Request.Method.GET, url,
             Response.Listener{
-                response -> Log.d("Respond",response.toString())
+                response ->
+//                Log.d("Respond",response.toString())
+                getRes = response
+                println("getRes = $getRes")
             },
             Response.ErrorListener{ error ->
                 Log.d("Response",error.toString())
@@ -122,7 +99,6 @@ class LogFragment : Fragment(), IVolley {
 
         val queue = Volley.newRequestQueue(requireContext())
         queue.add(jsonRequest)
-
     }
 
     override fun onResponse(response: String) {
