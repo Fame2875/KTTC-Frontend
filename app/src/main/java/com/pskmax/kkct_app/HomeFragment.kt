@@ -25,9 +25,12 @@ class HomeFragment : Fragment() {
     var tranCID :String? = null
     var tranToken: String? = null
 
-    var historyTransaction : JSONArray? = null
+//    var historyTransaction : JSONArray? = null
+    var creditScore : String? = null
+    var recommend : String? = null
     var unpaid : String? = null
-    var creditCalculation : JSONObject? = null
+    var dueDate : String? = null
+//    var creditCalculation : JSONObject? = null
 
     private fun changeFragments(fragment : Fragment){
         val fragmentManager = activity?.supportFragmentManager
@@ -61,10 +64,10 @@ class HomeFragment : Fragment() {
         // Inflate the layout for this fragment
         _binding = FragmentHomeBinding.inflate(inflater,container,false)
         Handler().postDelayed({
-//            binding.credit.text = creditScore
-//            binding.recommend.text = "Recommend : $recommend"
-//            binding.latestUnpaid.text = unpaid
-//            binding.dueDate.text = dueDate
+            binding.credit.text = creditScore
+            binding.recommend.text = "Recommend : $recommend"
+            binding.latestUnpaid.text = unpaid
+            binding.dueDate.text = dueDate
         }, 500)
 
         binding.profileUser.setOnClickListener {
@@ -95,10 +98,18 @@ class HomeFragment : Fragment() {
             Response.Listener{
                     response ->
                 Log.d("Respond",response.toString())
-                this.historyTransaction = JSONObject(response).getJSONArray("historyTransaction")
-//                this.creditCalculation = JSONObject(response).getJSONObject("creditScore")
-                println("history = $historyTransaction")
-//                println("credit = $creditCalculation")
+                val historyTransaction : JSONArray = JSONObject(response).getJSONArray("historyTransaction")
+                val creditCalculation : JSONObject = JSONObject(response).getJSONObject("creditCalculation")
+                val length : Int = historyTransaction.length()
+                this.creditScore = creditCalculation.getString("creditScore")
+                this.recommend = creditCalculation.getString("recommend")
+                var test = getUnpaid(historyTransaction[length-1].toString())
+                this.unpaid = test[5]
+                this.dueDate = test[3]
+                println("credit score = $creditScore")
+                println("recommend = $recommend")
+                println("unpaid = $unpaid")
+                println("recommend = $dueDate")
             },
             Response.ErrorListener{ error ->
                 Log.d("Response",error.toString())
@@ -109,8 +120,26 @@ class HomeFragment : Fragment() {
         queue.add(jsonRequest)
     }
 
-    private fun cleanData(){
-
+    private fun getUnpaid(string : String) : ArrayList<String>{
+        var temp : String = ""
+        var list = arrayListOf<String>()
+//        var data = string.replace("{","").replace("}","").replace("\""," ").replace(",","\n")
+        for(item in string){
+            if (item.toString() == "{"){
+                temp = ""
+            }
+            else if (item.toString() != ","){
+                temp += item
+            }
+            else if (item.toString() == "}"){
+                list += temp
+            }
+            else if (item.toString() == ","){
+                list += temp
+                temp = ""
+            }
+        }
+        return list
     }
 
 }

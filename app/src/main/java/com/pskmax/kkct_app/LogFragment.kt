@@ -54,7 +54,7 @@ class LogFragment : Fragment(), IVolley {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View {
+    ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentLogBinding.inflate(inflater,container,false)
         logRecyclerView = binding.logRecyclerView
@@ -88,6 +88,7 @@ class LogFragment : Fragment(), IVolley {
             Request.Method.GET, url,
             Response.Listener{
                 response ->
+//                Log.d("Respond",response.toString())
                 getRes = response
                 println("getRes = $getRes")
             },
