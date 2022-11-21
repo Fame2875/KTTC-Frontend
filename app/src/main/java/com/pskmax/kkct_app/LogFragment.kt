@@ -1,6 +1,5 @@
 package com.pskmax.kkct_app
 
-
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
@@ -19,7 +18,6 @@ import com.pskmax.kkct_app.myVolley.IVolley
 import com.android.volley.Request
 import com.pskmax.kkct_app.databinding.FragmentHomeBinding
 import com.pskmax.kkct_app.databinding.FragmentLogBinding
-
 
 class LogFragment : Fragment(), IVolley {
 
@@ -56,7 +54,7 @@ class LogFragment : Fragment(), IVolley {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentLogBinding.inflate(inflater,container,false)
         logRecyclerView = binding.logRecyclerView
@@ -64,10 +62,17 @@ class LogFragment : Fragment(), IVolley {
 
         Handler().postDelayed({
             // Log Data from DB
-            var log = arrayOf(
-                getRes
-            )
-            val logAdapter = LogRecycleView(log,requireContext())
+            var log = getRes.removeRange(0,10).dropLast(3).replace(",","\n").replace("{","").split("}")
+            var newlog: MutableList<String> = mutableListOf()
+            for(item in log){
+                var new = item.split("\n")
+                val list: String
+                list = new[2] + "\n" + new[3] +"\n" + new[4] + "\n" + new[5] + "\n" + new[6] + "\n"
+                newlog.add(list)
+            }
+
+            println(getRes)
+            val logAdapter = LogRecycleView(newlog.toTypedArray(),requireContext())
             logRecyclerView!!.adapter = logAdapter
         }, 1000)
 
@@ -75,11 +80,7 @@ class LogFragment : Fragment(), IVolley {
     }
 
     private fun logData(email: String, token: String){
-//        val url = "http://10.0.2.2:8093/api/getTransaction?email=${email}"
         val url = "http://10.0.2.2:8093/getTransaction?email=${email}"
-//        val url = "http://10.0.2.2:8093/api/login?email=poohkung@gmail.com&password=Pooh12345678"
-        //test url
-        //val url = "https://jsonplaceholder.typicode.com/todos/1"
         println("url: " + url)
         println("token: " + token)
 
@@ -87,7 +88,6 @@ class LogFragment : Fragment(), IVolley {
             Request.Method.GET, url,
             Response.Listener{
                 response ->
-//                Log.d("Respond",response.toString())
                 getRes = response
                 println("getRes = $getRes")
             },

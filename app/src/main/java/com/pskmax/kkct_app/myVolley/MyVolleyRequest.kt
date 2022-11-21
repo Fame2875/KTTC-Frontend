@@ -71,15 +71,6 @@ class MyVolleyRequest {
         addToRequestQueue(getRequest)
     }
 
-    fun getRequestV2(url:String){
-        val getRequest = StringRequest(Request.Method.GET,url, { response->
-            iVolley!!.onResponse(response.toString())
-        }, { error ->
-            iVolley!!.onResponse(error.message!!)
-        })
-        addToRequestQueue(getRequest)
-    }
-
     fun getRequestWithHeader(url: String,accessToken: String){
         val getRequest = object : StringRequest(Request.Method.GET,url,
             Response.Listener { response ->
