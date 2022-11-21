@@ -22,7 +22,3 @@ class LogRecycleView(private val items: Array<String>, val context: Context) :
         holder.bindTextValues!!.text = items[position]
     }
 }
-
-class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-    val bindTextValues: TextView? = itemView.findViewById(R.id.txtTitle)
-}

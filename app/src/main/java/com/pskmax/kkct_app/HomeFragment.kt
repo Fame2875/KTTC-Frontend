@@ -25,19 +25,10 @@ class HomeFragment : Fragment() {
     var tranCID :String? = null
     var tranToken: String? = null
 
-//    var historyTransaction : JSONArray? = null
     var creditScore : String? = null
     var recommend : String? = null
     var unpaid : String? = null
     var dueDate : String? = null
-//    var creditCalculation : JSONObject? = null
-
-    private fun changeFragments(fragment : Fragment){
-        val fragmentManager = activity?.supportFragmentManager
-        val fragmentTransaction = fragmentManager?.beginTransaction()
-        fragmentTransaction?.replace(R.id.frame_layout,fragment)
-        fragmentTransaction?.commit()
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -111,12 +102,13 @@ class HomeFragment : Fragment() {
                 this.creditScore = creditCalculation.getString("creditScore")
                 this.recommend = creditCalculation.getString("recommend")
                 var test = getUnpaid(historyTransaction[length-1].toString())
-                this.unpaid = test[5]
-                this.dueDate = test[3]
+                this.unpaid = test[6].replace("}","")
+                this.dueDate = test[5]
+                println("test = $test")
                 println("credit score = $creditScore")
                 println("recommend = $recommend")
                 println("unpaid = $unpaid")
-                println("recommend = $dueDate")
+                println("dueDate = $dueDate")
             },
             Response.ErrorListener{ error ->
                 Log.d("Response",error.toString())
@@ -130,19 +122,16 @@ class HomeFragment : Fragment() {
     private fun getUnpaid(string : String) : ArrayList<String>{
         var temp : String = ""
         var list = arrayListOf<String>()
-//        var data = string.replace("{","").replace("}","").replace("\""," ").replace(",","\n")
-        for(item in string){
+        var str = "$string,"
+        for(item in str){
             if (item.toString() == "{"){
-                temp = ""
             }
-            else if (item.toString() != ","){
+            else if (item.toString() != "," ){
                 temp += item
-            }
-            else if (item.toString() == "}"){
-                list += temp
             }
             else if (item.toString() == ","){
                 list += temp
+                println(temp)
                 temp = ""
             }
         }

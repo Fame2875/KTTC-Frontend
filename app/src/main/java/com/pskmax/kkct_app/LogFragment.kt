@@ -1,13 +1,11 @@
 package com.pskmax.kkct_app
 
-import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -16,10 +14,9 @@ import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
 import com.pskmax.kkct_app.myVolley.IVolley
 import com.android.volley.Request
-import com.pskmax.kkct_app.databinding.FragmentHomeBinding
 import com.pskmax.kkct_app.databinding.FragmentLogBinding
 
-class LogFragment : Fragment(), IVolley {
+class LogFragment : Fragment() {
 
     private var _binding : FragmentLogBinding? = null
     private val binding get() = _binding!!
@@ -28,11 +25,6 @@ class LogFragment : Fragment(), IVolley {
     var tranEmail: String? = null
     var tranToken: String? = null
     var getRes : String = ""
-
-    // Log Data from DB
-    private var log = arrayOf(
-        getRes
-    )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -88,7 +80,6 @@ class LogFragment : Fragment(), IVolley {
             Request.Method.GET, url,
             Response.Listener{
                 response ->
-//                Log.d("Respond",response.toString())
                 getRes = response
                 println("getRes = $getRes")
             },
@@ -100,11 +91,6 @@ class LogFragment : Fragment(), IVolley {
 
         val queue = Volley.newRequestQueue(requireContext())
         queue.add(jsonRequest)
-    }
-
-    override fun onResponse(response: String) {
-        TODO("Not yet implemented")
-        println(response)
     }
 
 }
