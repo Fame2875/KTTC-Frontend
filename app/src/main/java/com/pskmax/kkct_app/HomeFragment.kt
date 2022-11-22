@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentTransaction
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
@@ -57,9 +58,10 @@ class HomeFragment : Fragment() {
         Handler().postDelayed({
             binding.credit.text = creditScore
             binding.recommend.text = "Recommend : $recommend"
-            binding.latestUnpaid.text = unpaid
-            binding.dueDate.text = dueDate
+            binding.latestUnpaid.text = "Latest Unpaid : $unpaid"
+            binding.dueDate.text = "Your Due date : $dueDate"
         }, 500)
+
 
         binding.profileUser.setOnClickListener {
             val fragmentManager = activity?.supportFragmentManager
@@ -102,8 +104,8 @@ class HomeFragment : Fragment() {
                 this.creditScore = creditCalculation.getString("creditScore")
                 this.recommend = creditCalculation.getString("recommend")
                 var test = getUnpaid(historyTransaction[length-1].toString())
-                this.unpaid = test[2]
-                this.dueDate = test[3]
+                this.unpaid = test[2].removeRange(0,9)
+                this.dueDate = test[5].removeRange(0,11).removeRange(10,30)
                 println("test = $test")
                 println("credit score = $creditScore")
                 println("recommend = $recommend")

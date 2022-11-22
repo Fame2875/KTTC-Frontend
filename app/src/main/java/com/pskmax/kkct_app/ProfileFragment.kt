@@ -8,9 +8,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TextView
-import androidx.appcompat.widget.AppCompatButton
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
@@ -33,7 +30,7 @@ class ProfileFragment : Fragment() {
             email = it.getString("usEmail")
             tranToken = it.getString("usToken")
         }
-        loadCredit(email.toString(),tranToken.toString())
+        loadCid(email.toString(),tranToken.toString())
     }
 
     override fun onCreateView(
@@ -59,7 +56,7 @@ class ProfileFragment : Fragment() {
         return binding.root
     }
 
-    private fun loadCredit(email: String, token: String){
+    private fun loadCid(email: String, token: String){
         val url = "http://10.0.2.2:8093/getCustomer?email=${email}"
         println("url: " + url)
         println("email: " + email)
