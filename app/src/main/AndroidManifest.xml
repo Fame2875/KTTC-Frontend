@@ -14,7 +14,7 @@
         android:label="KKCT_app"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.KKCT_app"
+        android:theme="@style/Theme.KKCT_app_main"
         tools:targetApi="31"
         android:largeHeap="true"
         android:hardwareAccelerated="false"

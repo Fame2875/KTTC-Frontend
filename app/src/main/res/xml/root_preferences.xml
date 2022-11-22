@@ -6,16 +6,11 @@
     <PreferenceCategory
         app:title="General"
         >
-        <Preference
-            app:title="What"
-            />
-
-        <Preference
-            app:title="Going"
-            />
-
-        <Preference
-            app:title="On"
+        <SwitchPreferenceCompat
+            app:title="Dark theme"
+            app:key="dark_mode"
+            app:defaultValue="true"
+            app:dependency=""
             />
 
 

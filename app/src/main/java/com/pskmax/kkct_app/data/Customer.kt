@@ -1,13 +1,22 @@
 package com.pskmax.kkct_app.data
 
+import android.util.Log
+import com.android.volley.Request
+import com.android.volley.Response
+import com.android.volley.toolbox.StringRequest
+import com.android.volley.toolbox.Volley
+import org.json.JSONArray
+import org.json.JSONObject
+
 class Customer (private var email : String?=null,
                 private var pwd : String?=null,
-                private var citizen_id:String?=null){
+                private var citizen_id:String?=null,
+                ){
 
     private var id : String? = null
     private var user_token : String? = null
 
-    fun setUserToken(token :String){
+    fun setUserToken(token :String?){
         this.user_token = token
     }
 
@@ -15,7 +24,7 @@ class Customer (private var email : String?=null,
         return this.user_token
     }
 
-    fun setUserId(DB :String){
+    fun setUserId(DB :String?){
         this.id = DB
     }
 
@@ -23,7 +32,7 @@ class Customer (private var email : String?=null,
         return this.id
     }
 
-    fun setUserEmail(db_email:String){
+    fun setUserEmail(db_email:String?){
         this.email = db_email
     }
 
@@ -56,6 +65,7 @@ class Customer (private var email : String?=null,
         setUserCitizenId(list[3])
         setUserToken(token)
     }
+
 
 
 }

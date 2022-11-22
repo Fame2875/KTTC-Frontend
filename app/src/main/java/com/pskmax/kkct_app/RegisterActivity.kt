@@ -27,7 +27,6 @@ class RegisterActivity : AppCompatActivity(), IVolley {
     var editId: EditText? = null
     var btnRegister: Button? = null
     var btnToLogin: Button? = null
-    var url:String = "http://localhost:8080/api/signup"
 
     override fun onResponse(response: String) {
         //ส่ง response กลับมา
@@ -67,7 +66,6 @@ class RegisterActivity : AppCompatActivity(), IVolley {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
         supportActionBar?.hide()
-        url = "http://10.0.2.2:8093/api/signup"
         editEmail = findViewById<EditText>(R.id.editEmail)
         editPassword = findViewById<EditText>(R.id.editPassword)
         editCPassword = findViewById<EditText>(R.id.editCPassword)
@@ -78,7 +76,7 @@ class RegisterActivity : AppCompatActivity(), IVolley {
         val regScreen = Register()
         btnRegister!!.setOnClickListener{
             //ส่งค่าไป Back
-            register00((editEmail?.text).toString(),(editPassword?.text).toString(), (editId?.text).toString())
+
 
             if (!isEmailValid((editEmail?.text).toString())){
                 println("Your Email is not correct")
@@ -102,10 +100,12 @@ class RegisterActivity : AppCompatActivity(), IVolley {
                 Toast.makeText(applicationContext,"Your Citizen ID must have 13 characters", Toast.LENGTH_SHORT).show()
             }
             else{
+                regScreen.setReg((editEmail?.text).toString(),(editPassword?.text).toString(), (editId?.text).toString())
+                regScreen.register(this@RegisterActivity,this@RegisterActivity)
                 val intent = Intent(this@RegisterActivity,LoginActivity::class.java)
-                regScreen.updateUserInfo((editEmail?.text).toString(),(editPassword?.text).toString(),(editId?.text).toString())
+
                 Toast.makeText(applicationContext,"Sign Up Complete!", Toast.LENGTH_SHORT).show()
-                // ลบ Stack ของ Intent///////////////
+
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
             }
@@ -120,17 +120,7 @@ class RegisterActivity : AppCompatActivity(), IVolley {
             startActivity(intent)
         }
     }
-    //ของโอ๊ต
-    private fun register00(name: String,password : String,citizenID:String){
+    //ของโอ๊ต ย้ายไปอยู่ใน class Register//
 
-        val regJson = JSONObject()
-        regJson.put("email",name)
-        regJson.put("password",password)
-        regJson.put("citizenID", citizenID)
-
-        //println(regJson.keys())
-        MyVolleyRequest.getInstance(this@RegisterActivity,this@RegisterActivity)
-            .postRequestWithBody(url,regJson)
-    }
 
 }

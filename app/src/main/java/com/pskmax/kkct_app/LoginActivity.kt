@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import com.google.android.material.textfield.TextInputEditText
+import com.pskmax.kkct_app.data.Login
 import com.pskmax.kkct_app.myVolley.IVolley
 import com.pskmax.kkct_app.myVolley.MyVolleyRequest
 import org.json.JSONObject
@@ -22,7 +23,7 @@ class LoginActivity : AppCompatActivity(),IVolley{
     var btnToRegister: Button? = null
     var res : String? = null
     var resetToken : Boolean = false
-
+    val loginScreen = Login()
     //กันไม่ให้ย้อนกลับ
     var doubleBackToExitPressedOnce = false
     override fun onBackPressed() {
@@ -68,7 +69,9 @@ class LoginActivity : AppCompatActivity(),IVolley{
 
         btnLogin!!.setOnClickListener{
             // ส่งค่าไป Back
-            customerLogin((editEmail?.text).toString(),(editPassword?.text).toString())
+            loginScreen.setLogin((editEmail?.text).toString(),(editPassword?.text).toString())
+            loginScreen.login(this@LoginActivity,this@LoginActivity)
+
             Handler().postDelayed({
                 //wait for token
                 if(res != null){
@@ -92,13 +95,5 @@ class LoginActivity : AppCompatActivity(),IVolley{
         }
     }
 
-    private fun customerLogin(email: String  ,password : String ){
-        val url = "http://10.0.2.2:8093/api/login?email=${email}&password=${password}"
-        //test url
-        //val url = "https://jsonplaceholder.typicode.com/todos/1"
-        println(url)
-        MyVolleyRequest.getInstance(this@LoginActivity,this@LoginActivity)
-            .getRequest(url)
 
-    }
 }

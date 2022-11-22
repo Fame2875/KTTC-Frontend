@@ -12,6 +12,7 @@ import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.pskmax.kkct_app.data.Customer
 import com.pskmax.kkct_app.databinding.FragmentHomeBinding
 import org.json.JSONArray
 import org.json.JSONObject
@@ -31,13 +32,17 @@ class HomeFragment : Fragment() {
     var unpaid : String? = null
     var dueDate : String? = null
 
+    val user = Customer()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
             if (it != null) {
                 tranEmail = it.getString("usEmail")
+                user.setUserEmail(tranEmail)
                 tranCID = it.getString("usPwd")
+                user.setUserCitizenId(tranCID)
                 tranToken = it.getString("usToken")
+                user.setUserToken(tranToken)
                 println("{$tranEmail} Fragment")
                 println("{$tranCID} Fragment")
                 println("Done Loading")
@@ -46,7 +51,7 @@ class HomeFragment : Fragment() {
                 println("load failed")
             }
         }
-        loadCredit(tranEmail.toString(),tranToken.toString())
+        loadCredit(user.getUserEmail(),user.getUserToken())
     }
 
     override fun onCreateView(
@@ -75,7 +80,7 @@ class HomeFragment : Fragment() {
         }
         return binding.root
     }
-    private fun loadCredit(email: String, token: String){
+    private fun loadCredit(email: String?, token: String?){
         val url = "http://10.0.2.2:8093/RequestCredit_fromCustomer?email=${email}"
         println("url: " + url)
         println("email: " + email)
@@ -92,8 +97,8 @@ class HomeFragment : Fragment() {
                 this.creditScore = creditCalculation.getString("creditScore")
                 this.recommend = creditCalculation.getString("recommend")
                 var test = getUnpaid(historyTransaction[length-1].toString())
-                this.unpaid = test[2].removeRange(0,9)
-                this.dueDate = test[5].removeRange(0,11).removeRange(10,30)
+                this.unpaid = test[6].removeRange(0,9)
+                this.dueDate = test[2].removeRange(0,11).removeRange(10,30)
                 println("test = $test")
                 println("credit score = $creditScore")
                 println("recommend = $recommend")
