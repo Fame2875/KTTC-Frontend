@@ -1,13 +1,12 @@
 package com.pskmax.kkct_app
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.widget.Toast
-import androidx.cardview.widget.CardView
-import androidx.core.os.bundleOf
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentTransaction
 import com.pskmax.kkct_app.data.Customer
 import com.pskmax.kkct_app.databinding.ActivityHomeBinding
 
@@ -47,6 +46,7 @@ class HomeActivity : AppCompatActivity() {
 
         val fragmentManager = supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
+        val fragment : Fragment = HomeFragment()
         val bundle = Bundle()
 
         var login_email:String = ""
@@ -56,12 +56,6 @@ class HomeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        bundle.putString("usEmail",login_email)
-        bundle.putString("usPwd",login_pwd)
-        bundle.putString("usToken",login_token)
-        HomeFragment().arguments = bundle
-        fragmentTransaction.replace(R.id.frame_layout,HomeFragment())
-        fragmentTransaction.commit()
         supportActionBar?.hide()
 
         val user = Customer()
@@ -82,6 +76,14 @@ class HomeActivity : AppCompatActivity() {
         println("${user.getUserId()} ${user.getUserEmail()} ${user.getUserPwd()} ${user.getUserCitizenId()} ${user.getUserToken()}")
 
         println("HomeAc token: " + login_token)
+
+        bundle.putString("usEmail",login_email)
+        bundle.putString("usPwd",login_pwd)
+        bundle.putString("usToken",login_token)
+        fragment.arguments = bundle
+        fragmentTransaction.replace(R.id.frame_layout,fragment)
+        fragmentTransaction.commit()
+
         binding.bottomNav.setOnItemSelectedListener {
             val fragmentManager = supportFragmentManager
             val fragmentTransaction = fragmentManager.beginTransaction()

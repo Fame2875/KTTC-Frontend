@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.FragmentTransaction
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
@@ -61,6 +62,7 @@ class HomeFragment : Fragment() {
             binding.dueDate.text = dueDate
         }, 500)
 
+
         binding.profileUser.setOnClickListener {
             val fragmentManager = activity?.supportFragmentManager
             val fragmentTransaction = fragmentManager?.beginTransaction()
@@ -102,8 +104,8 @@ class HomeFragment : Fragment() {
                 this.creditScore = creditCalculation.getString("creditScore")
                 this.recommend = creditCalculation.getString("recommend")
                 var test = getUnpaid(historyTransaction[length-1].toString())
-                this.unpaid = test[2]
-                this.dueDate = test[3]
+                this.unpaid = test[5]
+                this.dueDate = test[4]
                 println("test = $test")
                 println("credit score = $creditScore")
                 println("recommend = $recommend")
