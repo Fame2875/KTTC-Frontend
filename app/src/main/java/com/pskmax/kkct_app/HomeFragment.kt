@@ -73,18 +73,6 @@ class HomeFragment : Fragment() {
             fragmentTransaction?.replace(R.id.frame_layout,fragment)
             fragmentTransaction?.commit()
         }
-
-        binding.seeUnpaid.setOnClickListener {
-            val fragmentManager = activity?.supportFragmentManager
-            val fragmentTransaction = fragmentManager?.beginTransaction()
-            val fragment = LogFragment()
-            val bundle = Bundle()
-            bundle.putString("usEmail",tranEmail)
-            bundle.putString("usToken",tranToken)
-            fragment.arguments = bundle
-            fragmentTransaction?.replace(R.id.frame_layout,fragment)
-            fragmentTransaction?.commit()
-        }
         return binding.root
     }
     private fun loadCredit(email: String, token: String){

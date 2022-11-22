@@ -65,24 +65,27 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:layout_weight="2"
                     android:text="Your Credit Score"
-                    android:textSize="20sp"/>
+                    android:textSize="25sp"/>
 
                 <TextView
                     android:id="@+id/credit"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:gravity="center_horizontal"
                     android:text="00.00"
-                    android:textSize="20sp"/>
+                    android:textSize="40sp"/>
                 <TextView
                     android:id="@+id/recommend"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="2"
+                    android:gravity="center_vertical"
                     android:text="Recommend :"
-                    android:textSize="20sp"/>
+                    android:textSize="25sp"/>
 
 
 
@@ -102,39 +105,29 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="2"
+                    android:gravity="center_vertical"
                     android:text="Your payment"
-                    android:textSize="20sp"/>
+                    android:textSize="25sp"/>
 
                 <TextView
                     android:id="@+id/latest_unpaid"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
-                    android:text="Unpaid:"
-                    android:textSize="20sp"/>
+                    android:gravity="center_vertical"
+                    android:text="Unpaid :"
+                    android:textSize="22.5sp"/>
 
                 <TextView
                     android:id="@+id/due_date"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
+                    android:gravity="center_vertical"
                     android:text="Due date :"
-                    android:textSize="20sp"/>
+                    android:textSize="22.5sp"/>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="end"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:id="@+id/seeUnpaid"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="More"/>
-                </LinearLayout>
             </LinearLayout>
 
         </LinearLayout>
