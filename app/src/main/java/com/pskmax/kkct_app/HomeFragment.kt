@@ -58,8 +58,8 @@ class HomeFragment : Fragment() {
         Handler().postDelayed({
             binding.credit.text = creditScore
             binding.recommend.text = "Recommend : $recommend"
-            binding.latestUnpaid.text = unpaid
-            binding.dueDate.text = dueDate
+            binding.latestUnpaid.text = "Latest Unpaid : $unpaid"
+            binding.dueDate.text = "Your Due date : $dueDate"
         }, 500)
 
 
@@ -104,8 +104,8 @@ class HomeFragment : Fragment() {
                 this.creditScore = creditCalculation.getString("creditScore")
                 this.recommend = creditCalculation.getString("recommend")
                 var test = getUnpaid(historyTransaction[length-1].toString())
-                this.unpaid = test[5]
-                this.dueDate = test[4]
+                this.unpaid = test[2].removeRange(0,9)
+                this.dueDate = test[5].removeRange(0,11).removeRange(10,30)
                 println("test = $test")
                 println("credit score = $creditScore")
                 println("recommend = $recommend")
