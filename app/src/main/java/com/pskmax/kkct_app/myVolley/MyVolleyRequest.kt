@@ -57,6 +57,10 @@ class MyVolleyRequest {
         })
     }
 
+    fun setiVolley(volley : IVolley){
+        this.iVolley = volley
+    }
+
     fun <T> addToRequestQueue(req: Request<T>){
         requestQueue.add(req);
     }
@@ -142,6 +146,7 @@ class MyVolleyRequest {
             if(mInstance == null){
                 mInstance = MyVolleyRequest(context,iVolley)
             }
+            mInstance!!.setiVolley(iVolley)
             return  mInstance!!
         }
     }

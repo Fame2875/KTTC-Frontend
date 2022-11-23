@@ -11,6 +11,7 @@ class LogRecycleView(private val items: Array<String>, val context: Context) :
     RecyclerView.Adapter<ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.row,parent,false)
+
         return ViewHolder(v)
     }
 

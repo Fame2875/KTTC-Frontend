@@ -66,15 +66,13 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="70dp"
-            android:layout_marginTop="30dp"
-            android:layout_marginRight="70dp"
+            android:gravity="center_vertical"
+            android:padding="40sp"
             android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_marginTop="15dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
@@ -85,19 +83,20 @@
                     android:layout_weight="1"
                     android:text="Email : "
                     android:textColor="#FFEB3B"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <TextView
                     android:id="@+id/emailValue"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:textSize="20sp"
                     android:textColor="#FFFFFF" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="wrap_content"
-                android:layout_height="20dp"
-                android:layout_marginTop="15dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:orientation="horizontal">
 
@@ -107,6 +106,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="CitizenID : "
+                    android:textSize="20sp"
                     android:textColor="#FFEB3B"
                     android:textStyle="bold" />
 
@@ -115,6 +115,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:textSize="20sp"
                     android:textColor="#FFFFFF" />
             </LinearLayout>
 

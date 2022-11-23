@@ -1,5 +1,6 @@
 package com.pskmax.kkct_app
 
+import android.os.Build
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
@@ -7,7 +8,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.FragmentTransaction
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
@@ -15,8 +15,8 @@ import com.android.volley.toolbox.Volley
 import com.pskmax.kkct_app.data.Customer
 import com.pskmax.kkct_app.databinding.FragmentHomeBinding
 import org.json.JSONArray
+import org.json.JSONException
 import org.json.JSONObject
-import java.util.Objects
 
 class HomeFragment : Fragment() {
 
@@ -62,8 +62,8 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater,container,false)
         Handler().postDelayed({
             binding.credit.text = creditScore
-            binding.recommend.text = "Recommend : $recommend"
-            binding.latestUnpaid.text = "Latest Unpaid : $unpaid"
+            binding.recommend.text = "Overall : $recommend"
+            binding.latestUnpaid.text = "Latest Unpaid : $unpaid Baht"
             binding.dueDate.text = "Your Due date : $dueDate"
         }, 500)
 
@@ -91,19 +91,39 @@ class HomeFragment : Fragment() {
             Response.Listener{
                     response ->
                 Log.d("Respond",response.toString())
-                val historyTransaction : JSONArray = JSONObject(response).getJSONArray("historyTransaction")
-                val creditCalculation : JSONObject = JSONObject(response).getJSONObject("creditCalculation")
-                val length : Int = historyTransaction.length()
-                this.creditScore = creditCalculation.getString("creditScore")
-                this.recommend = creditCalculation.getString("recommend")
-                var test = getUnpaid(historyTransaction[length-1].toString())
-                this.unpaid = test[6].removeRange(0,9)
-                this.dueDate = test[2].removeRange(0,11).removeRange(10,30)
-                println("test = $test")
-                println("credit score = $creditScore")
-                println("recommend = $recommend")
-                println("unpaid = $unpaid")
-                println("dueDate = $dueDate")
+                try {
+                    val historyTransaction : JSONArray = JSONObject(response).getJSONArray("historyTransaction")
+                    val creditCalculation : JSONObject = JSONObject(response).getJSONObject("creditCalculation")
+                    val length : Int = historyTransaction.length()
+                    this.creditScore = creditCalculation.getString("creditScore")
+                    this.recommend = creditCalculation.getString("recommend")
+                    var test = getUnpaid(historyTransaction[length-1].toString())
+                    this.unpaid = test[5].removeRange(0,9).replace("}","")
+                    this.dueDate = test[3].removeRange(0,11).removeRange(10,30)
+                    println("test = $test")
+                    println("credit score = $creditScore")
+                    println("recommend = $recommend")
+                    println("unpaid = $unpaid")
+                    println("dueDate = $dueDate")
+                } catch (e: JSONException) {
+                    this.creditScore = "-"
+                    this.recommend = "-"
+                    this.unpaid = "-"
+                    this.dueDate = "-"
+                }
+//                val historyTransaction : JSONArray = JSONObject(response).getJSONArray("historyTransaction")
+//                val creditCalculation : JSONObject = JSONObject(response).getJSONObject("creditCalculation")
+//                val length : Int = historyTransaction.length()
+//                this.creditScore = creditCalculation.getString("creditScore")
+//                this.recommend = creditCalculation.getString("recommend")
+//                var test = getUnpaid(historyTransaction[length-1].toString())
+//                this.unpaid = test[5].removeRange(0,9).replace("}","")
+//                this.dueDate = test[3].removeRange(0,11).removeRange(10,30)
+//                println("test = $test")
+//                println("credit score = $creditScore")
+//                println("recommend = $recommend")
+//                println("unpaid = $unpaid")
+//                println("dueDate = $dueDate")
             },
             Response.ErrorListener{ error ->
                 Log.d("Response",error.toString())

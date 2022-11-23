@@ -54,18 +54,36 @@ class LogFragment : Fragment() {
 
         Handler().postDelayed({
             // Log Data from DB
-            var log = getRes.removeRange(0,10).dropLast(3).replace(",","\n").replace("{","").split("}")
-            var newlog: MutableList<String> = mutableListOf()
-            for(item in log){
-                var new = item.split("\n")
-                val list: String
-                list = new[2] + "\n" + new[3] +"\n" + new[4] + "\n" + new[5] + "\n" + new[6] + "\n"
-                newlog.add(list)
-            }
+            try{
+                var log = getRes.removeRange(0,10).dropLast(3).replace(",","\n").replace("{","").split("}")
+                var newlog: MutableList<String> = mutableListOf()
+                for(item in log){
+                    var new = item.split("\n")
+                    val list: String
+                    list = new[2] + "\n" + new[3] +"\n" + new[4] + "\n" + new[5] + "\n" + new[6] + "\n"
+                    newlog.add(list)
+                }
 
-            println(getRes)
-            val logAdapter = LogRecycleView(newlog.toTypedArray(),requireContext())
-            logRecyclerView!!.adapter = logAdapter
+                println(getRes)
+                val logAdapter = LogRecycleView(newlog.toTypedArray(),requireContext())
+                logRecyclerView!!.adapter = logAdapter
+            }catch (e : NegativeArraySizeException){
+                var log = listOf<String>()
+                val logAdapter = LogRecycleView(log.toTypedArray(),requireContext())
+                logRecyclerView!!.adapter = logAdapter
+            }
+//            var log = getRes.removeRange(0,10).dropLast(3).replace(",","\n").replace("{","").split("}")
+//            var newlog: MutableList<String> = mutableListOf()
+//            for(item in log){
+//                var new = item.split("\n")
+//                val list: String
+//                list = new[2] + "\n" + new[3] +"\n" + new[4] + "\n" + new[5] + "\n" + new[6] + "\n"
+//                newlog.add(list)
+//            }
+//
+//            println(getRes)
+//            val logAdapter = LogRecycleView(newlog.toTypedArray(),requireContext())
+//            logRecyclerView!!.adapter = logAdapter
         }, 1000)
 
         return binding.root
